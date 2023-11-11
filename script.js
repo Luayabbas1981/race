@@ -129,6 +129,7 @@ let ball;
 
 // Set Speed function
 canvas.addEventListener("pointerdown", function (event) {
+  ballSpeed = 0;
   angle = Math.atan2(
     event.clientY - (canvas.height - 50),
     event.clientX - canvas.width
@@ -165,5 +166,5 @@ canvas.addEventListener("pointerup", function () {
   }
 
   animate();
-  ballSpeed = 0;
+  
 });
