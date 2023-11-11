@@ -171,13 +171,17 @@ canvas.addEventListener("pointerup", function () {
       Math.abs(ball.velocity.y) < stopThreshold
     ) {
       cancelAnimationFrame(animateId);
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      holeSArray.forEach((hole) => hole.draw());
-      let endRoundBall= new Ball(  canvas.width / 2,
-      canvas.height - 50,
-      canvas.width / 40,
-      "#ea1c0d",)
-      endRoundBall.draw()
+      setTimeout(() => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        holeSArray.forEach((hole) => hole.draw());
+        let endRoundBall = new Ball(
+          canvas.width / 2,
+          canvas.height - 50,
+          canvas.width / 40,
+          "#ea1c0d"
+        );
+        endRoundBall.draw();
+      }, 1000);
     }
   }
 
