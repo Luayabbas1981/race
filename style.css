@@ -1,0 +1,17 @@
+body {
+    height: 100vh;
+    
+}
+
+.row {
+    height: 90vh;
+    margin-top: 5%;
+}
+#canvas {
+    position: absolute;
+    width: 75%;
+    height: 100%;
+    left: 25%;
+    background-color: #ffbb00;
+    cursor: crosshair;
+}
