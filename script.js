@@ -33,18 +33,20 @@ class Ball {
 
   update() {
     this.draw();
-   // Check if the ball reaches the right or left boundary of the canvas
-   if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-    this.velocity.x = -this.velocity.x; // Reverse the x-direction
-  }
+    // Check if the ball reaches the right or left boundary of the canvas
+    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+      this.velocity.x = -this.velocity.x; // Reverse the x-direction
+    }
 
-  // Check if the ball reaches the top or bottom boundary of the canvas
-  if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-    this.velocity.y = -this.velocity.y; // Reverse the y-direction
-  }
-
-  this.x = this.x + this.velocity.x;
-  this.y = this.y + this.velocity.y;
+    // Check if the ball reaches the top or bottom boundary of the canvas
+    if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+      this.velocity.y = -this.velocity.y; // Reverse the y-direction
+    }
+    const friction = 0.99; // Adjust this value to control the rate of speed reduction
+    this.velocity.x *= friction;
+    this.velocity.y *= friction;
+    this.x = this.x + this.velocity.x;
+    this.y = this.y + this.velocity.y;
   }
 }
 let initBall = new Ball(
@@ -137,11 +139,12 @@ canvas.addEventListener("pointerdown", function (event) {
 
   ballSpeedInterval = setInterval(() => {
     ballSpeed++;
-  }, 100);
+  }, 50);
 });
 
 // Animate function
 canvas.addEventListener("pointerup", function () {
+  const stopThreshold = 0.1;
   const velocity = {
     x: Math.cos(angle) * ballSpeed,
     y: Math.sin(angle) * ballSpeed,
@@ -163,8 +166,20 @@ canvas.addEventListener("pointerup", function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
     holeSArray.forEach((hole) => hole.draw());
     ball.update();
+    if (
+      Math.abs(ball.velocity.x) < stopThreshold &&
+      Math.abs(ball.velocity.y) < stopThreshold
+    ) {
+      cancelAnimationFrame(animateId);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      holeSArray.forEach((hole) => hole.draw());
+      let endRoundBall= new Ball(  canvas.width / 2,
+      canvas.height - 50,
+      canvas.width / 40,
+      "#ea1c0d",)
+      endRoundBall.draw()
+    }
   }
 
   animate();
-  
 });
