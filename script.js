@@ -5,41 +5,45 @@ let mouseX;
 let mouseY;
 let ballSpeed = 0;
 let ballSpeedInterval;
+let angle;
+let animateId;
+
 // Set screen pixel
 const scaleFactor = window.devicePixelRatio;
 canvas.width = canvas.clientWidth * scaleFactor;
 canvas.height = canvas.clientHeight * scaleFactor;
 context.scale(scaleFactor, scaleFactor);
 
-
 // Ball class
-
 class Ball {
-  constructor(ballSrc, x, y, width, height,velocity) {
-    this.ball = new Image();
-    this.ball.src = ballSrc;
-    this.ball.onload = () => {
-      this.draw(); // Call draw() once the image is loaded
-    };
+  constructor(x, y, radius, color, velocity) {
     this.x = x;
     this.y = y;
-    this.width = width;
-    this.height = height;
-    this.id = this.id;
-    this.rect = this.rect;
+    this.radius = radius;
+    this.color = color;
     this.velocity = velocity;
   }
 
   draw() {
-    context.drawImage(this.ball, this.x, this.y, this.width, this.height);
+    context.beginPath();
+    context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    context.fillStyle = this.color;
+    context.fill();
   }
-  update(){
+
+  update() {
     this.draw();
     this.x = this.x + this.velocity.x;
     this.y = this.y + this.velocity.y;
   }
 }
-let hole = new Ball("./images/ball.png", canvas.width/2 -30, canvas.height -70, 60, 60);
+let initBall = new Ball(
+  canvas.width / 2,
+  canvas.height - 50,
+  canvas.width / 40,
+  "#ea1c0d"
+);
+initBall.draw();
 // Hole class
 class Hole {
   constructor(holeSrc, x, y, width, height) {
@@ -60,52 +64,96 @@ class Hole {
     context.drawImage(this.hole, this.x, this.y, this.width, this.height);
   }
 }
-let holeSArray =[]
+let holeSArray = [];
 function createHoles() {
+  const x = canvas.width;
+  /* const y = canvas.height  */
+  const width = canvas.width / 12;
+  const height = canvas.width / 15;
   for (let index = 0; index < 8; index++) {
-    if(index===0){
-      let hole = new Hole("./images/hole.png", 60, 50, 80, 70);
-      hole.id = index;
-      holeSArray.push(hole)
+    if (index === 0) {
+      let hole = new Hole("./images/hole.png", x / 8, 50, width, height);
+      hole.id = 3;
+      holeSArray.push(hole);
     }
-    if(index===1 || index===2){
-      let hole = new Hole("./images/hole.png", index  * 280, 50, 80, 70);
-      hole.id = index;
-      holeSArray.push(hole)
+    if (index === 1) {
+      let hole = new Hole("./images/hole.png", x / 2.2, 50, width, height);
+      hole.id = 3;
+      holeSArray.push(hole);
     }
-    if(index===3){
-      let hole = new Hole("./images/hole.png", 90, 140, 80, 70);
-      hole.id = index;
-      holeSArray.push(hole)
+    if (index === 2) {
+      let hole = new Hole("./images/hole.png", x / 1.3, 50, width, height);
+      hole.id = 3;
+      holeSArray.push(hole);
     }
-    if(index===4 || index===5 ){
-      let hole = new Hole("./images/hole.png", (index -3) *270,160, 80, 70);
-      hole.id = index;
-      holeSArray.push(hole)
+    if (index === 3) {
+      let hole = new Hole("./images/hole.png", x / 7, 160, width, height);
+      hole.id = 2;
+      holeSArray.push(hole);
     }
-    if(index===6 || index===7 ){
-      let hole = new Hole("./images/hole.png", (index -5) *200,270, 80, 70);
-      hole.id = index;
-      holeSArray.push(hole)
+    if (index === 4) {
+      let hole = new Hole("./images/hole.png", x / 2.8, 160, width, height);
+      hole.id = 2;
+      holeSArray.push(hole);
     }
-   
+    if (index === 5) {
+      let hole = new Hole("./images/hole.png", x / 1.6, 160, width, height);
+      hole.id = 2;
+      holeSArray.push(hole);
+    }
+    if (index === 6) {
+      let hole = new Hole("./images/hole.png", x / 4, 270, width, height);
+      hole.id = 1;
+      holeSArray.push(hole);
+    }
+    if (index === 7) {
+      let hole = new Hole("./images/hole.png", x / 1.4, 270, width, height);
+      hole.id = 1;
+      holeSArray.push(hole);
+    }
   }
 }
 createHoles();
-let AnimateId 
-// Speed Handler function
-function setSpeed() {
-  ballSpeedInterval= setInterval(() => {  
+let ball;
+// You should populate this array with Hole objects
+
+// Set Speed function
+canvas.addEventListener("pointerdown", function (event) {
+  angle = Math.atan2(
+    event.clientY - (canvas.height - 50),
+    event.clientX - canvas.width
+  );
+
+  ballSpeedInterval = setInterval(() => {
     ballSpeed++;
   }, 100);
-  
-}
-// Set Speed function 
-canvas.addEventListener("pointerdown",setSpeed)
+});
 
 // Animate function
-function animateBall(){
-  clearInterval(ballSpeedInterval)
-  // speed = 0
-}
-canvas.addEventListener
+canvas.addEventListener("pointerup", function () {
+  const velocity = {
+    x: Math.cos(angle) * ballSpeed,
+    y: Math.sin(angle) * ballSpeed,
+  };
+
+  clearInterval(ballSpeedInterval);
+
+  // Create the ball object only once
+  ball = new Ball(
+    canvas.width / 2,
+    canvas.height - 50,
+    canvas.width / 40,
+    "#ea1c0d",
+    velocity
+  );
+
+  function animate() {
+    animateId = requestAnimationFrame(animate);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    holeSArray.forEach((hole) => hole.draw());
+    ball.update();
+  }
+
+  animate();
+  ballSpeed = 0;
+});
