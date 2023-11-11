@@ -33,8 +33,18 @@ class Ball {
 
   update() {
     this.draw();
-    this.x = this.x + this.velocity.x;
-    this.y = this.y + this.velocity.y;
+   // Check if the ball reaches the right or left boundary of the canvas
+   if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+    this.velocity.x = -this.velocity.x; // Reverse the x-direction
+  }
+
+  // Check if the ball reaches the top or bottom boundary of the canvas
+  if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+    this.velocity.y = -this.velocity.y; // Reverse the y-direction
+  }
+
+  this.x = this.x + this.velocity.x;
+  this.y = this.y + this.velocity.y;
   }
 }
 let initBall = new Ball(
