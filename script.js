@@ -18,7 +18,26 @@ context.scale(scaleFactor, scaleFactor);
 }
 // Ball class
 
+class Ball {
+  constructor(ballSrc, x, y, width, height) {
+    this.ball = new Image();
+    this.ball.src = ballSrc;
+    this.ball.onload = () => {
+      this.draw(); // Call draw() once the image is loaded
+    };
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.id = this.id;
+    this.rect = this.rect;
+  }
 
+  draw() {
+    context.drawImage(this.ball, this.x, this.y, this.width, this.height);
+  }
+}
+let hole = new Ball("./images/ball.png", canvas.width/2 -30, canvas.height -70, 60, 60);
 // Hole class
 class Hole {
   constructor(holeSrc, x, y, width, height) {
