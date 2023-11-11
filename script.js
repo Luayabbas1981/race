@@ -11,15 +11,11 @@ canvas.width = canvas.clientWidth * scaleFactor;
 canvas.height = canvas.clientHeight * scaleFactor;
 context.scale(scaleFactor, scaleFactor);
 
-// Set speed
- function setSpeed() {
-  ballSpeed++;
-  
-}
+
 // Ball class
 
 class Ball {
-  constructor(ballSrc, x, y, width, height) {
+  constructor(ballSrc, x, y, width, height,velocity) {
     this.ball = new Image();
     this.ball.src = ballSrc;
     this.ball.onload = () => {
@@ -31,10 +27,16 @@ class Ball {
     this.height = height;
     this.id = this.id;
     this.rect = this.rect;
+    this.velocity = velocity;
   }
 
   draw() {
     context.drawImage(this.ball, this.x, this.y, this.width, this.height);
+  }
+  update(){
+    this.draw();
+    this.x = this.x + this.velocity.x;
+    this.y = this.y + this.velocity.y;
   }
 }
 let hole = new Ball("./images/ball.png", canvas.width/2 -30, canvas.height -70, 60, 60);
@@ -90,5 +92,20 @@ function createHoles() {
   }
 }
 createHoles();
+let AnimateId 
+// Speed Handler function
+function setSpeed() {
+  ballSpeedInterval= setInterval(() => {  
+    ballSpeed++;
+  }, 100);
+  
+}
+// Set Speed function 
+canvas.addEventListener("pointerdown",setSpeed)
 
-
+// Animate function
+function animateBall(){
+  clearInterval(ballSpeedInterval)
+  // speed = 0
+}
+canvas.addEventListener

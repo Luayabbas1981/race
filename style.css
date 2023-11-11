@@ -15,3 +15,12 @@ body {
     background-color: #ffbb00;
     cursor: crosshair;
 }
+.player{
+    left: 7%;
+    bottom: 1%;
+}
+.finish-line{
+    top: -20px;
+    left: 5%;
+    width: 15%;
+}
