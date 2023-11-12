@@ -1,3 +1,4 @@
+const playArea = document.querySelector(".play-area");
 const raceArea = document.querySelector(".race-area");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
@@ -8,14 +9,10 @@ let ballSpeedInterval;
 let angle;
 let animateId;
 
+// Canvas demistions
 
-canvas.width =0.75 * raceArea.offsetWidth;
-console.log(canvas.width)
-canvas.height = raceArea.offsetHeight;
-// Set screen pixel
-const scaleFactor = window.devicePixelRatio;
-
-context.scale(scaleFactor, scaleFactor);
+canvas.width= playArea.offsetWidth
+canvas.height= playArea.offsetHeight
 
 // Ball class
 class Ball {
@@ -55,7 +52,7 @@ class Ball {
 let initBall = new Ball(
   canvas.width / 2,
   canvas.height - 50,
-  canvas.width / 40,
+  20,
   "#ea1c0d"
 );
 initBall.draw();
@@ -131,10 +128,10 @@ let ball;
 // Set Speed function
 canvas.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
-  if(event.clientX< canvas.width/2){}
+
   angle = Math.atan2(
-    event.clientY - (canvas.height - 50),
-    event.clientX - canvas.width  
+    event.clientY - canvas.height -50,
+    event.clientX - canvas.width 
   );
 
   ballSpeedInterval = setInterval(() => {
@@ -156,7 +153,7 @@ canvas.addEventListener("pointerup", function () {
   ball = new Ball(
     canvas.width / 2,
     canvas.height - 50,
-    canvas.width / 40,
+    20,
     "#ea1c0d",
     velocity
   );
@@ -186,7 +183,7 @@ canvas.addEventListener("pointerup", function () {
         let endRoundBall = new Ball(
           canvas.width / 2,
           canvas.height - 50,
-          canvas.width / 40,
+          20,
           "#ea1c0d"
         );
         endRoundBall.draw();
