@@ -1,10 +1,12 @@
 body {
     height: 100vh;
 }
-
-.row {
+.main {
     height: 90vh;
-    margin-top: 5%;
+    margin-top: 4%;
+}
+.row {
+    height: 90%;
 }
 .info {
     background-color: #3196c7;

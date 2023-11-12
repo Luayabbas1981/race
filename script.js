@@ -1,4 +1,5 @@
 const raceArea = document.querySelector(".race-area");
+const finishLine = document.querySelector(".finish-line img")
 const round = document.querySelector(".rounds span");
 const info = document.querySelector(".steps span");
 const playArea = document.querySelector(".play-area");
@@ -7,6 +8,7 @@ const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 let mouseX;
 let mouseY;
+let playerPosition;
 let ballSpeed = 0;
 let rounds = 0;
 let steps = 0;
@@ -16,8 +18,10 @@ let angle;
 let animateId;
 
 // Canvas demotions
+const finishLinePosition = finishLine.getBoundingClientRect()
 
 canvas.width = playArea.offsetWidth;
+console.log(canvas.width,playArea.offsetWidth)
 canvas.height = playArea.offsetHeight;
 //
 
@@ -141,6 +145,7 @@ playArea.addEventListener("pointerdown", function (event) {
 
 // Animate function
 playArea.addEventListener("pointerup", function () {
+  playerPosition= player.getBoundingClientRect()
   rounds++;
   round.textContent = rounds;
   const stopThreshold = 0.1;
@@ -174,6 +179,7 @@ playArea.addEventListener("pointerup", function () {
           steps += hole.number / 2;
           player.style = `--steps:${-steps * 15}px`;
           info.textContent = steps;
+          console.log(finishLinePosition.bottom,playerPosition.top)
         }, 20);
         setTimeout(() => {
           endRound();
