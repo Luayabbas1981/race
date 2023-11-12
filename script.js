@@ -1,5 +1,6 @@
 const raceArea = document.querySelector(".race-area");
-const info = document.querySelector(".info");
+const round = document.querySelector(".rounds span");
+const info = document.querySelector(".steps span");
 const playArea = document.querySelector(".play-area");
 const player = document.querySelector(".player");
 const canvas = document.getElementById("canvas");
@@ -7,6 +8,7 @@ const context = canvas.getContext("2d");
 let mouseX;
 let mouseY;
 let ballSpeed = 0;
+let rounds = 0;
 let steps = 0;
 let ballSpeedInterval;
 let stepsInterval;
@@ -139,6 +141,8 @@ canvas.addEventListener("pointerdown", function (event) {
 
 // Animate function
 canvas.addEventListener("pointerup", function () {
+  rounds++;
+  round.textContent = rounds;
   const stopThreshold = 0.1;
   const velocity = {
     x: Math.cos(angle) * ballSpeed,
@@ -168,9 +172,8 @@ canvas.addEventListener("pointerup", function () {
         setTimeout(() => {
           cancelAnimationFrame(animateId);
           steps += hole.number / 2;
-          player.style = `--steps:${-steps * 10}px`;
+          player.style = `--steps:${-steps * 15}px`;
           info.textContent = steps;
-          
         }, 20);
         setTimeout(() => {
           endRound();
