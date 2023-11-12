@@ -74,8 +74,8 @@ class Hole {
     context.fillStyle = this.color;
     context.fill();
     // Draw the number in the middle
-    context.fillStyle = "#df0b0b"; // Set the color for the text
-    context.font = "16px Arial"; // Set the font size and family
+    context.fillStyle = "#ffffff"; // Set the color for the text
+    context.font = "24px Arial"; // Set the font size and family
     context.textAlign = "center"; // Center the text horizontally
     context.textBaseline = "middle"; // Center the text vertically
     context.fillText(this.number, this.x, this.y);
@@ -85,39 +85,39 @@ let holeSArray = [];
 function createHoles() {
   const x = canvas.width;
   const radius = 30;
-  const color = "white";
+  const color = "#3196c7";
 
   for (let index = 0; index < 8; index++) {
     if (index === 0) {
-      let hole = new Hole(x / 8, 50, radius, color, 6);
+      let hole = new Hole(x / 8, 80, radius, color, 6);
       holeSArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole(x / 2.2, 50, radius, color, 5);
+      let hole = new Hole(x / 2.2, 80, radius, color, 7);
       holeSArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole(x / 1.3, 50, radius, color, 4);
+      let hole = new Hole(x / 1.3, 80, radius, color, 8);
       holeSArray.push(hole);
     }
     if (index === 3) {
-      let hole = new Hole(x / 7, 160, radius, color, 2);
+      let hole = new Hole(x / 5, 220, radius, color, 5);
       holeSArray.push(hole);
     }
     if (index === 4) {
-      let hole = new Hole(x / 2.8, 160, radius, color, 1);
+      let hole = new Hole(x / 2, 220, radius, color, 1);
       holeSArray.push(hole);
     }
     if (index === 5) {
-      let hole = new Hole(x / 1.6, 160, radius, color, 3);
+      let hole = new Hole(x / 1.3, 220, radius, color, 3);
       holeSArray.push(hole);
     }
     if (index === 6) {
-      let hole = new Hole(x / 4, 270, radius, color, 8);
+      let hole = new Hole(x / 4, 350, radius, color, 4);
       holeSArray.push(hole);
     }
     if (index === 7) {
-      let hole = new Hole(x / 1.4, 270, radius, color, 7);
+      let hole = new Hole(x / 1.4, 350, radius, color, 2);
       holeSArray.push(hole);
     }
   }
