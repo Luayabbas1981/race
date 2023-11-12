@@ -164,24 +164,27 @@ canvas.addEventListener("pointerup", function () {
   function animate() {
     animateId = requestAnimationFrame(animate);
     context.clearRect(0, 0, canvas.width, canvas.height);
-    holeSArray.forEach((hole) => hole.draw());
+    holeSArray.forEach((hole) => {
+      hole.draw();
+      const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
+      console.log(dist);
+    });
     ball.update();
     if (
       Math.abs(ball.velocity.x) < stopThreshold &&
       Math.abs(ball.velocity.y) < stopThreshold
     ) {
       cancelAnimationFrame(animateId);
-      setTimeout(() => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        holeSArray.forEach((hole) => hole.draw());
-        let endRoundBall = new Ball(
-          canvas.width / 2,
-          canvas.height - 50,
-          canvas.width / 40,
-          "#ea1c0d"
-        );
-        endRoundBall.draw();
-      }, 1000);
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      holeSArray.forEach((hole) => hole.draw());
+      let endRoundBall = new Ball(
+        canvas.width / 2,
+        canvas.height - 50,
+        canvas.width / 40,
+        "#ea1c0d"
+      );
+      endRoundBall.draw();
     }
   }
 
