@@ -128,12 +128,10 @@ let ball;
 // Set Speed function
 canvas.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
-
   angle = Math.atan2(
     event.clientY - canvas.height - 50,
     event.clientX - canvas.width / 2
   );
-
   ballSpeedInterval = setInterval(() => {
     ballSpeed++;
   }, 50);
@@ -172,7 +170,7 @@ canvas.addEventListener("pointerup", function () {
           steps += hole.number / 2;
           player.style = `--steps:${-steps * 10}px`;
           info.textContent = steps;
-          console.log(steps, (player.style = `--steps:${-steps * 10}px`));
+          
         }, 20);
         setTimeout(() => {
           endRound();
