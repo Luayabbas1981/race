@@ -1,19 +1,23 @@
-const playArea = document.querySelector(".play-area");
 const raceArea = document.querySelector(".race-area");
+const info = document.querySelector(".info");
+const playArea = document.querySelector(".play-area");
 const player = document.querySelector(".player");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 let mouseX;
 let mouseY;
 let ballSpeed = 0;
+let steps = 0;
 let ballSpeedInterval;
+let stepsInterval;
 let angle;
 let animateId;
 
 // Canvas demistions
 
-canvas.width= playArea.offsetWidth
-canvas.height= playArea.offsetHeight
+canvas.width = playArea.offsetWidth;
+canvas.height = playArea.offsetHeight;
+//
 
 // Ball class
 class Ball {
@@ -50,12 +54,7 @@ class Ball {
     this.y = this.y + this.velocity.y;
   }
 }
-let initBall = new Ball(
-  canvas.width / 2,
-  canvas.height - 50,
-  20,
-  "#ea1c0d"
-);
+let initBall = new Ball(canvas.width / 2, canvas.height - 50, 20, "#ea1c0d");
 initBall.draw();
 // Hole class
 class Hole {
@@ -131,8 +130,8 @@ canvas.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
 
   angle = Math.atan2(
-    event.clientY - canvas.height -50,
-    event.clientX - canvas.width /2
+    event.clientY - canvas.height - 50,
+    event.clientX - canvas.width / 2
   );
 
   ballSpeedInterval = setInterval(() => {
@@ -167,10 +166,17 @@ canvas.addEventListener("pointerup", function () {
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 1) {
         hole.color = "green";
-        player.style.transform=`translateY(${hole.number *-10}px)`
+
         setTimeout(() => {
           cancelAnimationFrame(animateId);
+          steps += hole.number / 2;
+          player.style = `--steps:${-steps * 10}px`;
+          info.textContent = steps;
+          console.log(steps, (player.style = `--steps:${-steps * 10}px`));
         }, 20);
+        setTimeout(() => {
+          endRound();
+        }, 200);
       }
     });
     ball.update();
@@ -179,19 +185,24 @@ canvas.addEventListener("pointerup", function () {
       Math.abs(ball.velocity.y) < stopThreshold
     ) {
       cancelAnimationFrame(animateId);
-      setTimeout(() => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        holeSArray.forEach((hole) => hole.draw());
-        let endRoundBall = new Ball(
-          canvas.width / 2,
-          canvas.height - 50,
-          20,
-          "#ea1c0d"
-        );
-        endRoundBall.draw();
-      }, 700);
+      endRound();
     }
   }
 
   animate();
 });
+
+function endRound() {
+  setTimeout(() => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    holeSArray = [];
+    createHoles();
+    let endRoundBall = new Ball(
+      canvas.width / 2,
+      canvas.height - 50,
+      20,
+      "#ea1c0d"
+    );
+    endRoundBall.draw();
+  }, 700);
+}

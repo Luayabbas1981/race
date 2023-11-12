@@ -16,5 +16,6 @@ body {
 }
 .player{
    left: 50%;
-   translate: -50%;
+   translate: -50% var(--steps);
+  
 }
