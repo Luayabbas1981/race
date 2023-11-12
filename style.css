@@ -16,11 +16,11 @@ body {
     cursor: crosshair;
 }
 .player{
-    left: 7%;
+    left: 9%;
     bottom: 1%;
 }
 .finish-line{
-    top: -10px;
+    top: -30px;
     left: 5%;
     width: 15%;
     height: 15%;
