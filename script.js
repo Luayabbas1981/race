@@ -1,5 +1,6 @@
 const playArea = document.querySelector(".play-area");
 const raceArea = document.querySelector(".race-area");
+const player = document.querySelector(".player");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 let mouseX;
@@ -131,7 +132,7 @@ canvas.addEventListener("pointerdown", function (event) {
 
   angle = Math.atan2(
     event.clientY - canvas.height -50,
-    event.clientX - canvas.width 
+    event.clientX - canvas.width /2
   );
 
   ballSpeedInterval = setInterval(() => {
@@ -166,6 +167,7 @@ canvas.addEventListener("pointerup", function () {
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 1) {
         hole.color = "green";
+        player.style.transform=`translateY(${hole.number *-10}px)`
         setTimeout(() => {
           cancelAnimationFrame(animateId);
         }, 20);

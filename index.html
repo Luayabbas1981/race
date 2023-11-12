@@ -15,12 +15,13 @@
   <body>
     <main>
       <div class="container">
-        <div class="row">
-          <div class="race-area col-6 m-0 p-0 bg-info">
-            <div><img src="./images/finish-line.png" alt="" class="finish-line position-absolute"></div>
-            <div>
-              <img src="./images/turtle.png" alt="" class="player position-absolute">
-            </div>
+        <div class="row justify-content-center">
+          <div class="race-area col-4 m-0 p-0 d-flex">
+           <div class="info col-4 bg-success"></div>
+           <div class="race col-8 bg-info position-relative">
+            <div class="finish-line position-absolute start-50 translate-middle-x"><img src="./images/finish-line.png" alt=""></div>
+            <div class="player position-absolute start-50 bottom-0 "><img src="./images/turtle.png" alt=""></div>
+           </div>
           </div>
           <div class="play-area col-6 m-0 p-0">
             <canvas id="canvas"></canvas>

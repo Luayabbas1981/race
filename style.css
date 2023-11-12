@@ -14,3 +14,7 @@ body {
     background-color: #ffbb00;
     cursor: crosshair;
 }
+.player{
+   left: 50%;
+   translate: -50%;
+}
