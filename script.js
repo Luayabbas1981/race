@@ -8,10 +8,13 @@ let ballSpeedInterval;
 let angle;
 let animateId;
 
+
+canvas.width =0.75 * raceArea.offsetWidth;
+console.log(canvas.width)
+canvas.height = raceArea.offsetHeight;
 // Set screen pixel
 const scaleFactor = window.devicePixelRatio;
-canvas.width = canvas.clientWidth * scaleFactor;
-canvas.height = canvas.clientHeight * scaleFactor;
+
 context.scale(scaleFactor, scaleFactor);
 
 // Ball class
@@ -128,9 +131,10 @@ let ball;
 // Set Speed function
 canvas.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
+  if(event.clientX< canvas.width/2){}
   angle = Math.atan2(
     event.clientY - (canvas.height - 50),
-    event.clientX - canvas.width
+    event.clientX - canvas.width  
   );
 
   ballSpeedInterval = setInterval(() => {
