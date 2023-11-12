@@ -1,6 +1,5 @@
 body {
     height: 100vh;
-    
 }
 
 .row {
@@ -14,8 +13,6 @@ body {
     background-color: #ffbb00;
     cursor: crosshair;
 }
-.player{
-  
-   translate: 0 var(--steps);
-  
+.player {
+    translate: 0 var(--steps);
 }
