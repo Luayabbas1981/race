@@ -58,13 +58,12 @@ let initBall = new Ball(
 initBall.draw();
 // Hole class
 class Hole {
-  constructor(x, y, radius, color,number) {
+  constructor(x, y, radius, color, number) {
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.color = color;
-    this.number=number
-
+    this.number = number;
   }
 
   draw() {
@@ -72,12 +71,12 @@ class Hole {
     context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     context.fillStyle = this.color;
     context.fill();
-      // Draw the number in the middle
-      context.fillStyle = "#df0b0b"; // Set the color for the text
-      context.font = "16px Arial"; // Set the font size and family
-      context.textAlign = "center"; // Center the text horizontally
-      context.textBaseline = "middle"; // Center the text vertically
-      context.fillText(this.number, this.x, this.y);
+    // Draw the number in the middle
+    context.fillStyle = "#df0b0b"; // Set the color for the text
+    context.font = "16px Arial"; // Set the font size and family
+    context.textAlign = "center"; // Center the text horizontally
+    context.textBaseline = "middle"; // Center the text vertically
+    context.fillText(this.number, this.x, this.y);
   }
 }
 let holeSArray = [];
@@ -88,35 +87,35 @@ function createHoles() {
 
   for (let index = 0; index < 8; index++) {
     if (index === 0) {
-      let hole = new Hole(x / 8, 50, radius, color,6);
+      let hole = new Hole(x / 8, 50, radius, color, 6);
       holeSArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole(x / 2.2, 50, radius, color,5);
+      let hole = new Hole(x / 2.2, 50, radius, color, 5);
       holeSArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole(x / 1.3, 50, radius, color,4);
+      let hole = new Hole(x / 1.3, 50, radius, color, 4);
       holeSArray.push(hole);
     }
     if (index === 3) {
-      let hole = new Hole(x / 7, 160, radius, color,2);
+      let hole = new Hole(x / 7, 160, radius, color, 2);
       holeSArray.push(hole);
     }
     if (index === 4) {
-      let hole = new Hole(x / 2.8, 160, radius, color,1);
+      let hole = new Hole(x / 2.8, 160, radius, color, 1);
       holeSArray.push(hole);
     }
     if (index === 5) {
-      let hole = new Hole(x / 1.6, 160, radius, color,3);
+      let hole = new Hole(x / 1.6, 160, radius, color, 3);
       holeSArray.push(hole);
     }
     if (index === 6) {
-      let hole = new Hole(x / 4, 270, radius, color,8);
+      let hole = new Hole(x / 4, 270, radius, color, 8);
       holeSArray.push(hole);
     }
     if (index === 7) {
-      let hole = new Hole(x / 1.4, 270, radius, color,7);
+      let hole = new Hole(x / 1.4, 270, radius, color, 7);
       holeSArray.push(hole);
     }
   }
@@ -177,16 +176,17 @@ canvas.addEventListener("pointerup", function () {
       Math.abs(ball.velocity.y) < stopThreshold
     ) {
       cancelAnimationFrame(animateId);
-
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      holeSArray.forEach((hole) => hole.draw());
-      let endRoundBall = new Ball(
-        canvas.width / 2,
-        canvas.height - 50,
-        canvas.width / 40,
-        "#ea1c0d"
-      );
-      endRoundBall.draw();
+      setTimeout(() => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        holeSArray.forEach((hole) => hole.draw());
+        let endRoundBall = new Ball(
+          canvas.width / 2,
+          canvas.height - 50,
+          canvas.width / 40,
+          "#ea1c0d"
+        );
+        endRoundBall.draw();
+      }, 700);
     }
   }
 
