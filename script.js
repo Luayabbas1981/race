@@ -58,72 +58,70 @@ let initBall = new Ball(
 initBall.draw();
 // Hole class
 class Hole {
-  constructor(holeSrc, x, y, width, height) {
-    this.hole = new Image();
-    this.hole.src = holeSrc;
-    this.hole.onload = () => {
-      this.draw(); // Call draw() once the image is loaded
-    };
+  constructor(x, y, radius, color) {
     this.x = x;
     this.y = y;
-    this.width = width;
-    this.height = height;
+    this.radius = radius;
+    this.color = color;
     this.id = this.id;
-    this.rect = this.rect;
   }
 
   draw() {
-    context.drawImage(this.hole, this.x, this.y, this.width, this.height);
+    context.beginPath();
+    context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    context.fillStyle = this.color;
+    context.fill();
   }
 }
 let holeSArray = [];
 function createHoles() {
   const x = canvas.width;
-  /* const y = canvas.height  */
-  const width = canvas.width / 12;
-  const height = canvas.width / 15;
+  const radius = 30;
+  const color = "gray";
+
   for (let index = 0; index < 8; index++) {
     if (index === 0) {
-      let hole = new Hole("./images/hole.png", x / 8, 50, width, height);
+      let hole = new Hole(x / 8, 50, radius, color);
       hole.id = 3;
       holeSArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole("./images/hole.png", x / 2.2, 50, width, height);
+      let hole = new Hole(x / 2.2, 50, radius, color);
       hole.id = 3;
       holeSArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole("./images/hole.png", x / 1.3, 50, width, height);
+      let hole = new Hole(x / 1.3, 50, radius, color);
       hole.id = 3;
       holeSArray.push(hole);
     }
     if (index === 3) {
-      let hole = new Hole("./images/hole.png", x / 7, 160, width, height);
+      let hole = new Hole(x / 7, 160, radius, color);
       hole.id = 2;
       holeSArray.push(hole);
     }
     if (index === 4) {
-      let hole = new Hole("./images/hole.png", x / 2.8, 160, width, height);
+      let hole = new Hole(x / 2.8, 160, radius, color);
       hole.id = 2;
       holeSArray.push(hole);
     }
     if (index === 5) {
-      let hole = new Hole("./images/hole.png", x / 1.6, 160, width, height);
+      let hole = new Hole(x / 1.6, 160, radius, color);
       hole.id = 2;
       holeSArray.push(hole);
     }
     if (index === 6) {
-      let hole = new Hole("./images/hole.png", x / 4, 270, width, height);
+      let hole = new Hole(x / 4, 270, radius, color);
       hole.id = 1;
       holeSArray.push(hole);
     }
     if (index === 7) {
-      let hole = new Hole("./images/hole.png", x / 1.4, 270, width, height);
+      let hole = new Hole(x / 1.4, 270, radius, color);
       hole.id = 1;
       holeSArray.push(hole);
     }
   }
+  holeSArray.forEach((hole) => hole.draw());
 }
 createHoles();
 let ball;
