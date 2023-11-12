@@ -1,25 +1,25 @@
 body {
     height: 100vh;
+    
 }
 
 .row {
     height: 90vh;
     margin-top: 5%;
 }
-
 #canvas {
     position: absolute;
-    width: 55%;
+    width: 75%;
     height: 100%;
-    left: 45%;
+    left: 25%;
     background-color: #ffbb00;
     cursor: crosshair;
 }
-.player {
+.player{
     left: 9%;
     bottom: 1%;
 }
-.finish-line {
+.finish-line{
     top: -30px;
     left: 5%;
     width: 15%;
