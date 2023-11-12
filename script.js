@@ -165,7 +165,12 @@ canvas.addEventListener("pointerup", function () {
     holeSArray.forEach((hole) => {
       hole.draw();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
-      console.log(dist);
+      if (dist - ball.radius - hole.radius < 0.08) {
+        hole.color = "green";
+        setTimeout(() => {
+          cancelAnimationFrame(animateId);
+        }, 20);
+      }
     });
     ball.update();
     if (
