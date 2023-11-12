@@ -15,5 +15,5 @@ body {
 }
 .player {
     translate: 0 var(--steps);
-    transition: 1s;
+    transition: 1.5s;
 }
