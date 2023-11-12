@@ -15,7 +15,7 @@ let stepsInterval;
 let angle;
 let animateId;
 
-// Canvas demistions
+// Canvas demotions
 
 canvas.width = playArea.offsetWidth;
 canvas.height = playArea.offsetHeight;
@@ -128,7 +128,7 @@ let ball;
 // You should populate this array with Hole objects
 
 // Set Speed function
-canvas.addEventListener("pointerdown", function (event) {
+playArea.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
   angle = Math.atan2(
     event.clientY - canvas.height - 50,
@@ -140,7 +140,7 @@ canvas.addEventListener("pointerdown", function (event) {
 });
 
 // Animate function
-canvas.addEventListener("pointerup", function () {
+playArea.addEventListener("pointerup", function () {
   rounds++;
   round.textContent = rounds;
   const stopThreshold = 0.1;
