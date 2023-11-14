@@ -19,7 +19,7 @@ const isMobile =
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   );
-console.log(isMobile);
+
 // Game values
 let mouseX;
 let mouseY;
@@ -208,7 +208,6 @@ playArea.addEventListener("pointerdown", function (event) {
     if (ballSpeed === 35) {
       clearInterval(ballSpeedInterval);
     }
-    console.log(ballSpeed);
   }, 50);
 });
 
