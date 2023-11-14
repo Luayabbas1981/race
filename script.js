@@ -4,7 +4,7 @@ const finishLine = document.querySelector(".finish-line img");
 const round = document.querySelector(".rounds span");
 const info = document.querySelector(".steps span");
 const ballSpeedInfo = document.querySelector(".ball-speed span");
-const modals = document.querySelector(".modals")
+const modals = document.querySelector(".modals");
 const playArea = document.querySelector(".play-area");
 const player = document.querySelector(".player");
 const raceCanvas = document.getElementById("raceCanvas");
@@ -13,8 +13,9 @@ const raceContext = raceCanvas.getContext("2d");
 const playerContext = playerCanvas.getContext("2d");
 // Game sound elements
 const motor = document.querySelector(".motor");
-motor.volume=0.2
+motor.volume = 0.2;
 // Game controls
+const restart = document.querySelector("button");
 const leftArrow = document.querySelector(".left-arrow");
 const RightArrow = document.querySelector(".right-arrow");
 const isMobile =
@@ -257,8 +258,8 @@ playArea.addEventListener("pointerup", function () {
         }, 20);
         setTimeout(() => {
           if (playerPosition.top - finishLinePosition.bottom < 50) {
-              modals.classList.remove("d-none")
-              modals.children[0].children[1].textContent=`${rounds} Rounds`
+            modals.classList.remove("d-none");
+            modals.children[0].children[1].textContent = `${rounds} Rounds`;
           }
 
           endRound();
@@ -293,3 +294,7 @@ function endRound() {
     endRoundBall.draw();
   }, 700);
 }
+
+restart.onclick = () => {
+  location.reload();
+};

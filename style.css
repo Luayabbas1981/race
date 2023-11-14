@@ -17,7 +17,7 @@ body {
     background-color: #cddc39;
     color: #607d8b;
 }
-.race{
+.race {
     background-color: #cddc39;
 }
 .player {
@@ -32,15 +32,16 @@ body {
     cursor: crosshair;
 }
 
-.left-arrow,.right-arrow{
+.left-arrow,
+.right-arrow {
     cursor: pointer;
 }
 
-@media (max-width:767px){
-    *{
+@media (max-width: 767px) {
+    * {
         font-size: 10px;
     }
-    img{
+    img {
         width: 50px;
     }
 }
