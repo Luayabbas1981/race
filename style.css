@@ -1,11 +1,11 @@
 body {
     height: 100vh;
     user-select: none;
-    background-color: #d3f3fe;
+    background-color: #eaf8fc;
     overflow: hidden;
 }
 header{
-    color: #fb4700
+    color: #03787a
 }
 .main {
     height: 90vh;
