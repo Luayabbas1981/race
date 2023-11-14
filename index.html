@@ -14,25 +14,31 @@
   </head>
   <body>
     <header >
-      <h4 class="fw-bold fst-italic text-center p-4">TURTLE CHALLENGE</h4>
+      <h4 class="fw-bold fst-italic text-center p-3">TURTLE CHALLENGE</h4>
+      <div class="container">
+        <div class="row">
+          <div class="info col col-lg-9 p-2 mx-auto fst-italic fs-5 fw-bold d-flex justify-content-around align-items-center">
+            <div class="rounds p-1 rounded-3 bg-light">ROUND <span style="color: #0324e1;">0</span></div>
+            <div class="ball-speed p-1 rounded-3 bg-light">BALL SPEED <span style="color: #f44336;">0</span></div>
+            <div class="steps p-1 rounded-3 bg-light">STEPS <span style="color: #ff9500;" >0</span></div>
+            
+           </div>
+        </div>
+      </div>
+    
     </header>
     <main class="main">
       <div class="container h-100">
         <div class="row justify-content-center">
-          <div class="race-area col-4 m-0 p-0 d-flex">
-           <div class="info col-6 p-4 fst-italic fs-5 fw-bold d-flex flex-column justify-content-around align-items-center">
-            <div class="rounds p-2 rounded-3 bg-light">ROUND <span style="color: #0324e1;">0</span></div>
-            <div class="ball-speed p-2 rounded-3 bg-light">BALL SPEED <span style="color: #f44336;">0</span></div>
-            <div class="steps p-2 rounded-3 bg-light">STEPS <span style="color: #ff9500;" >0</span></div>
-            <img class="arrow" src="./images/arrow.png" alt="">
-           </div>
-           <div class="race col-6 position-relative d-flex justify-content-center">
+          <div class="race-area col-2 m-0 p-0 d-flex">
+          
+           <div class="race col  position-relative d-flex justify-content-center">
             <canvas id="raceCanvas" class="position-absolute w-100 h-100"></canvas>
             <div class="finish-line"><img src="./images/finish-line.png" alt=""></div>
             <div class="player position-absolute bottom-0"><img src="./images/turtle.png" alt=""></div>
            </div>
           </div>
-          <div class="play-area col-8 col-lg-6 m-0 p-0 position-relative">
+          <div class="play-area col-10 col-lg-7 m-0 p-0 position-relative">
             <canvas id="playerCanvas"></canvas>
            <!--  <img src="./images/left-arrow.png" alt="left-arrow" class="left-arrow position-absolute bottom-0 start-0" onclick="leftArrowHandler()">
             <img src="./images/right-arrow.png" alt="right-arrow" class="right-arrow position-absolute bottom-0 end-0" onclick="rightArrowHandler()"> -->
