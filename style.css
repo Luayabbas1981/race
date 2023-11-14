@@ -16,7 +16,9 @@ body {
     background-color: #3f52c0;
     color: #537180;
 }
-
+.info > div > div {
+    width: 24%;
+}
 .race {
     background-color: #f0f7b5;
 }
@@ -28,7 +30,7 @@ body {
 #playerCanvas {
     width: 100%;
     height: 100%;
-    background-color: #ffd043;
+    background-color: #fbf1d2;
     cursor: crosshair;
 }
 
@@ -42,7 +44,7 @@ body {
         font-size: 10px;
     }
     body {
-        background-color:#fff;
+        background-color: #fff;
     }
     img {
         width: 50px;
