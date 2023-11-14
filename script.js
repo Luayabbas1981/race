@@ -153,7 +153,7 @@ class Hole {
     playerContext.fillText(this.number, this.x, this.y);
   }
 }
-let holeSArray = [];
+let holesArray = [];
 function createHoles() {
   const x = playerCanvas.width;
   const radius = isMobile ? 17 : 28;
