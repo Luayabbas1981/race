@@ -159,30 +159,30 @@ function createHoles() {
 
   for (let index = 0; index < 6; index++) {
     if (index === 0) {
-      let hole = new Hole(x / 8, isMobile?60:80, radius, color, 6);
+      let hole = new Hole(x / 8, isMobile ? 60 : 80, radius, color, 6);
       holeSArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole(x / 2.2, isMobile?65:85, radius, color, 8);
+      let hole = new Hole(x / 2.2, isMobile ? 65 : 85, radius, color, 8);
       holeSArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole(x / 1.3, isMobile?50:90, radius, color, 7);
+      let hole = new Hole(x / 1.3, isMobile ? 50 : 90, radius, color, 7);
       holeSArray.push(hole);
     }
     if (index === 3) {
-      let hole = new Hole(x / 5, isMobile?180:220, radius, color, 5);
+      let hole = new Hole(x / 5, isMobile ? 180 : 220, radius, color, 5);
       holeSArray.push(hole);
     }
     if (index === 4) {
-      let hole = new Hole(x / 2, isMobile?180:220, radius, color, 3);
+      let hole = new Hole(x / 2, isMobile ? 180 : 220, radius, color, 3);
       holeSArray.push(hole);
     }
     if (index === 5) {
-      let hole = new Hole(x / 1.35, isMobile?200:240, radius, color, 4);
+      let hole = new Hole(x / 1.35, isMobile ? 200 : 240, radius, color, 4);
       holeSArray.push(hole);
     }
-   /*  if (index === 6) {
+    /*  if (index === 6) {
       let hole = new Hole(x / 4, 350, radius, color, 1);
       holeSArray.push(hole);
     }
@@ -194,8 +194,8 @@ function createHoles() {
   holeSArray.forEach((hole) => hole.draw());
 }
 createHoles();
+
 let ball;
-// You should populate this array with Hole objects
 
 // Set Speed function
 playArea.addEventListener("pointerdown", function (event) {
@@ -254,10 +254,14 @@ playArea.addEventListener("pointerup", function () {
               ? parseInt(hole.number / 2)
               : parseInt(hole.number / 2) + 1;
           player.style = `--steps:${-steps * 15}px`;
+          console.log(raceCanvas.height - finishLinePosition.bottom);
           info.textContent = steps;
         }, 20);
         setTimeout(() => {
-          if (playerPosition.top - finishLinePosition.bottom < 50) {
+          if (playerPosition.top - finishLinePosition.bottom < 180) {
+            player.style = `--steps:${-(
+              raceCanvas.height - finishLinePosition.top
+            )}px`;
             modals.classList.remove("d-none");
             modals.children[0].children[1].textContent = `${rounds} Rounds`;
           }
