@@ -18,21 +18,21 @@
         <div class="row justify-content-center">
           <div class="race-area col-4 m-0 p-0 d-flex">
            <div class="info col-6 p-4 text-light fs-5 fw-bold d-flex flex-column justify-content-around align-items-center">
-            <div class="rounds">ROUND <span style="color: #e0f606;">0</span></div>
-            <div class="ball-speed">BALL SPEED <span style="color: #e0f606;">0</span></div>
-            <div class="steps">STEPS <span style="color: #e0f606;" >0</span></div>
+            <div class="rounds">ROUND <span style="color: #0626f6;">0</span></div>
+            <div class="ball-speed">BALL SPEED <span style="color: #0626f6;">0</span></div>
+            <div class="steps">STEPS <span style="color: #0ef606;" >0</span></div>
             <img class="arrow" src="./images/arrow.png" alt="">
            </div>
-           <div class="race col-6 bg-info position-relative d-flex justify-content-center">
+           <div class="race col-6 position-relative d-flex justify-content-center">
             <canvas id="raceCanvas" class="position-absolute w-100 h-100"></canvas>
             <div class="finish-line"><img src="./images/finish-line.png" alt=""></div>
             <div class="player position-absolute bottom-0"><img src="./images/turtle.png" alt=""></div>
            </div>
           </div>
-          <div class="play-area col-6 m-0 p-0 position-relative">
+          <div class="play-area col-8 col-lg-6 m-0 p-0 position-relative">
             <canvas id="playerCanvas"></canvas>
-            <img src="./images/left-arrow.png" alt="" class="left-arrow position-absolute bottom-0 start-0">
-            <img src="./images/right-arrow.png" alt="" class="right-arrow position-absolute bottom-0 end-0">
+            <img src="./images/left-arrow.png" alt="left-arrow" class="left-arrow position-absolute bottom-0 start-0" onclick="leftArrowHandler()">
+            <img src="./images/right-arrow.png" alt="right-arrow" class="right-arrow position-absolute bottom-0 end-0" onclick="rightArrowHandler()">
           </div>
         </div>
       </div>

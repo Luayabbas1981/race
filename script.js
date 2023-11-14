@@ -13,18 +13,26 @@ const playerContext = playerCanvas.getContext("2d");
 // Game sound elements
 const motor = document.querySelector(".motor");
 // Game controls
-const leftArrow= document.querySelector(".left-arrow")
-const RightArrow= document.querySelector(".right-arrow")
+const leftArrow = document.querySelector(".left-arrow");
+const RightArrow = document.querySelector(".right-arrow");
+const isMobile =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+  console.log(isMobile)
 // Game values
 let mouseX;
 let mouseY;
 let playerPosition;
 let ballSpeed = 0;
+let ballPosition;
 let rounds = 0;
 let steps = 0;
 let ballSpeedInterval;
 let angle;
 let animateId;
+let isGameStated = false;
+
 
 // raceCanvas
 raceCanvas.width = raceArea.offsetWidth;
@@ -45,7 +53,7 @@ function drawLines() {
     raceContext.lineWidth = 1;
     raceContext.beginPath();
     raceContext.moveTo(
-      30,
+      isMobile?10:30,
       raceCanvas.height - (playerPosition.bottom - playerPosition.top + i * 14)
     );
     raceContext.lineTo(
@@ -55,10 +63,10 @@ function drawLines() {
     raceContext.stroke();
     raceContext.closePath();
     raceContext.fillStyle = "black"; // Set the color of the text
-    raceContext.font = "14px Arial"; // Set the font size and family
+    raceContext.font = `${isMobile?"12px Arial":"14px Arial"}`; // Set the font size and family
     raceContext.fillText(
       i,
-      15,
+      isMobile?5:15,
       raceCanvas.height -
         (playerPosition.bottom - playerPosition.top) -
         i * 14 +
@@ -111,12 +119,13 @@ class Ball {
   }
 }
 let initBall = new Ball(
-  playerCanvas.width / 2,
-  playerCanvas.height - 50,
-  20,
-  "#0014c3"
+ ballPosition? ballPosition: playerCanvas.width / 2,
+  playerCanvas.height - 30,
+  isMobile?10:18,
+  "#de0341"
 );
 initBall.draw();
+
 // Hole class
 class Hole {
   constructor(x, y, radius, color, number) {
@@ -134,7 +143,7 @@ class Hole {
     playerContext.fill();
     // Draw the number in the middle
     playerContext.fillStyle = "#ffffff";
-    playerContext.font = "24px Arial";
+    playerContext.font = `${isMobile?"16px Arial":"24px Arial"}`;
     playerContext.textAlign = "center";
     playerContext.textBaseline = "middle";
     playerContext.fillText(this.number, this.x, this.y);
@@ -143,8 +152,8 @@ class Hole {
 let holeSArray = [];
 function createHoles() {
   const x = playerCanvas.width;
-  const radius = 30;
-  const color = "#04a4a1";
+  const radius = isMobile?17:30;
+  const color = "#0461a4";
 
   for (let index = 0; index < 8; index++) {
     if (index === 0) {
@@ -221,9 +230,9 @@ playArea.addEventListener("pointerup", function () {
   // Create the ball object only once
   ball = new Ball(
     playerCanvas.width / 2,
-    playerCanvas.height - 50,
-    20,
-    "#0014c3",
+    playerCanvas.height - 30,
+    isMobile?10:18,
+    "#de0341",
     velocity
   );
 
@@ -234,7 +243,7 @@ playArea.addEventListener("pointerup", function () {
       hole.draw();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
-        hole.color = "#c32a00";
+        hole.color = "#409dcc";
         motor.play();
         setTimeout(() => {
           cancelAnimationFrame(animateId);
@@ -255,7 +264,7 @@ playArea.addEventListener("pointerup", function () {
       }
     });
     ball.update();
-   
+
     if (
       Math.abs(ball.velocity.x) < stopThreshold &&
       Math.abs(ball.velocity.y) < stopThreshold
@@ -275,9 +284,9 @@ function endRound() {
     createHoles();
     let endRoundBall = new Ball(
       playerCanvas.width / 2,
-      playerCanvas.height - 50,
-      20,
-      "#0014c3"
+      playerCanvas.height - 30,
+      isMobile?10:18,
+      "#de0341"
     );
     endRoundBall.draw();
   }, 700);
