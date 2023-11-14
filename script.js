@@ -19,7 +19,7 @@ const isMobile =
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   );
-  console.log(isMobile)
+console.log(isMobile);
 // Game values
 let mouseX;
 let mouseY;
@@ -32,7 +32,6 @@ let ballSpeedInterval;
 let angle;
 let animateId;
 let isGameStated = false;
-
 
 // raceCanvas
 raceCanvas.width = raceArea.offsetWidth;
@@ -53,7 +52,7 @@ function drawLines() {
     raceContext.lineWidth = 1;
     raceContext.beginPath();
     raceContext.moveTo(
-      isMobile?10:30,
+      isMobile ? 10 : 30,
       raceCanvas.height - (playerPosition.bottom - playerPosition.top + i * 14)
     );
     raceContext.lineTo(
@@ -63,10 +62,10 @@ function drawLines() {
     raceContext.stroke();
     raceContext.closePath();
     raceContext.fillStyle = "black"; // Set the color of the text
-    raceContext.font = `${isMobile?"12px Arial":"14px Arial"}`; // Set the font size and family
+    raceContext.font = `${isMobile ? "12px Arial" : "14px Arial"}`; // Set the font size and family
     raceContext.fillText(
       i,
-      isMobile?5:15,
+      isMobile ? 5 : 15,
       raceCanvas.height -
         (playerPosition.bottom - playerPosition.top) -
         i * 14 +
@@ -119,9 +118,9 @@ class Ball {
   }
 }
 let initBall = new Ball(
- ballPosition? ballPosition: playerCanvas.width / 2,
+  ballPosition ? ballPosition : playerCanvas.width / 2,
   playerCanvas.height - 30,
-  isMobile?10:18,
+  isMobile ? 10 : 18,
   "#de0341"
 );
 initBall.draw();
@@ -143,7 +142,7 @@ class Hole {
     playerContext.fill();
     // Draw the number in the middle
     playerContext.fillStyle = "#ffffff";
-    playerContext.font = `${isMobile?"16px Arial":"24px Arial"}`;
+    playerContext.font = `${isMobile ? "16px Arial" : "24px Arial"}`;
     playerContext.textAlign = "center";
     playerContext.textBaseline = "middle";
     playerContext.fillText(this.number, this.x, this.y);
@@ -152,7 +151,7 @@ class Hole {
 let holeSArray = [];
 function createHoles() {
   const x = playerCanvas.width;
-  const radius = isMobile?17:30;
+  const radius = isMobile ? 17 : 30;
   const color = "#0461a4";
 
   for (let index = 0; index < 8; index++) {
@@ -215,6 +214,7 @@ playArea.addEventListener("pointerdown", function (event) {
 
 // Animate function
 playArea.addEventListener("pointerup", function () {
+  clearInterval(ballSpeedInterval);
   playerPosition = player.getBoundingClientRect();
   rounds++;
   round.textContent = rounds;
@@ -231,7 +231,7 @@ playArea.addEventListener("pointerup", function () {
   ball = new Ball(
     playerCanvas.width / 2,
     playerCanvas.height - 30,
-    isMobile?10:18,
+    isMobile ? 10 : 18,
     "#de0341",
     velocity
   );
@@ -285,7 +285,7 @@ function endRound() {
     let endRoundBall = new Ball(
       playerCanvas.width / 2,
       playerCanvas.height - 30,
-      isMobile?10:18,
+      isMobile ? 10 : 18,
       "#de0341"
     );
     endRoundBall.draw();

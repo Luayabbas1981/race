@@ -13,7 +13,8 @@ body {
     height: 90%;
 }
 .info {
-    background-color: #3296c8;
+    background-color: #cddc39;
+    color: #607d8b;
 }
 .race{
     background-color: #cddc39;
