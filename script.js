@@ -13,7 +13,7 @@ const raceContext = raceCanvas.getContext("2d");
 const playerContext = playerCanvas.getContext("2d");
 // Game sound elements
 const motor = document.querySelector(".motor");
-motor.volume = 0.2;
+motor.volume = 0.1;
 // Game controls
 const restart = document.querySelector("button");
 const leftArrow = document.querySelector(".left-arrow");
