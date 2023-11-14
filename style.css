@@ -4,10 +4,11 @@ body {
     background-color: #d3f3fe;
     overflow: hidden;
 }
-
+header{
+    color: rgb(1, 100, 18)
+}
 .main {
     height: 90vh;
-    translate: 0 8%;
 }
 .row {
     height: 90%;
