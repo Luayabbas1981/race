@@ -150,11 +150,11 @@ function createHoles() {
       holeSArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole(x / 2.2, 80, radius, color, 7);
+      let hole = new Hole(x / 2.2, 80, radius, color, 8);
       holeSArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole(x / 1.3, 80, radius, color, 8);
+      let hole = new Hole(x / 1.3, 80, radius, color, 7);
       holeSArray.push(hole);
     }
     if (index === 3) {
