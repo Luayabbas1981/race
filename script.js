@@ -156,7 +156,7 @@ class Hole {
 let holeSArray = [];
 function createHoles() {
   const x = playerCanvas.width;
-  const radius = isMobile ? 17 : 30;
+  const radius = isMobile ? 17 : 28;
   const color = "#057ac3";
 
   for (let index = 0; index < 6; index++) {
