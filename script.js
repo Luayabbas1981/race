@@ -187,23 +187,10 @@ let ball;
 // Set Speed function
 playArea.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
-  if (event.clientX < window.innerWidth / 2 + raceArea.offsetWidth) {
-    angle = Math.atan2(
-      event.clientY -
-        playerCanvas.height +
-        100 -
-        (window.innerHeight - raceArea.offsetHeight),
-      event.clientX - playerCanvas.width - raceArea.offsetWidth - 100
-    );
-  } else {
-    angle = Math.atan2(
-      event.clientY -
-        playerCanvas.height +
-        100 -
-        (window.innerHeight - raceArea.offsetHeight),
-      event.clientX - playerCanvas.width - raceArea.offsetWidth
-    );
-  }
+  angle = Math.atan2(
+    event.clientY - (initBall.y + playerCanvas.getBoundingClientRect().top),
+    event.clientX - (initBall.x + playerCanvas.getBoundingClientRect().left)
+  );
 
   ballSpeedInterval = setInterval(() => {
     ballSpeed++;
