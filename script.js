@@ -138,7 +138,7 @@ let holeSArray = [];
 function createHoles() {
   const x = playerCanvas.width;
   const radius = 30;
-  const color = "#3196c7";
+  const color = "#a43f04";
 
   for (let index = 0; index < 8; index++) {
     if (index === 0) {
