@@ -12,6 +12,9 @@ const raceContext = raceCanvas.getContext("2d");
 const playerContext = playerCanvas.getContext("2d");
 // Game sound elements
 const motor = document.querySelector(".motor");
+// Game controls
+const leftArrow= document.querySelector(".left-arrow")
+const RightArrow= document.querySelector(".right-arrow")
 // Game values
 let mouseX;
 let mouseY;
