@@ -13,7 +13,7 @@ body {
     height: 90%;
 }
 .info {
-    background-color: #3196c7;
+    background-color: #2b7295;
 }
 .player {
     translate: 0 var(--steps);
