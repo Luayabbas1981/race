@@ -15,11 +15,11 @@ header{
 }
 
 .info {
-    background-color: #dceb52;
-    color: #607d8b;
+    background-color: #3f52c0;
+    color: #537180;
 }
 .race {
-    background-color: #e6f08a;
+    background-color: #f0f7b5;
 }
 .player {
     translate: 0 var(--steps);
@@ -29,7 +29,7 @@ header{
 #playerCanvas {
     width: 100%;
     height: 100%;
-    background-color: #fedb72;
+    background-color: #e2e0e0;
     cursor: crosshair;
 }
 
