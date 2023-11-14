@@ -51,7 +51,7 @@ const linesNumber = parseInt(
 
 function drawLines() {
   for (let i = 0; i < linesNumber - 1; i++) {
-    raceContext.strokeStyle = "white";
+    raceContext.strokeStyle = "gray";
     raceContext.lineWidth = 1;
     raceContext.beginPath();
     raceContext.moveTo(
@@ -64,7 +64,7 @@ function drawLines() {
     );
     raceContext.stroke();
     raceContext.closePath();
-    raceContext.fillStyle = "black"; // Set the color of the text
+    raceContext.fillStyle = "blue"; // Set the color of the text
     raceContext.font = `${isMobile ? "12px Arial" : "14px Arial"}`; // Set the font size and family
     raceContext.fillText(
       i,

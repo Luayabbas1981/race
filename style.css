@@ -14,11 +14,11 @@ body {
 }
 
 .info {
-    background-color: #cddc39;
+    background-color: #dceb52;
     color: #607d8b;
 }
 .race {
-    background-color: #cddc39;
+    background-color: #dceb52;
 }
 .player {
     translate: 0 var(--steps);
