@@ -155,9 +155,9 @@ let holeSArray = [];
 function createHoles() {
   const x = playerCanvas.width;
   const radius = isMobile ? 17 : 30;
-  const color = "#0461a4";
+  const color = "#057ac3";
 
-  for (let index = 0; index < 8; index++) {
+  for (let index = 0; index < 6; index++) {
     if (index === 0) {
       let hole = new Hole(x / 8, 80, radius, color, 6);
       holeSArray.push(hole);
@@ -182,14 +182,14 @@ function createHoles() {
       let hole = new Hole(x / 1.3, 220, radius, color, 4);
       holeSArray.push(hole);
     }
-    if (index === 6) {
+   /*  if (index === 6) {
       let hole = new Hole(x / 4, 350, radius, color, 1);
       holeSArray.push(hole);
     }
     if (index === 7) {
       let hole = new Hole(x / 1.4, 350, radius, color, 2);
       holeSArray.push(hole);
-    }
+    } */
   }
   holeSArray.forEach((hole) => hole.draw());
 }
@@ -245,7 +245,7 @@ playArea.addEventListener("pointerup", function () {
       hole.draw();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
-        hole.color = "#409dcc";
+        hole.color = "#e69900";
         motor.play();
         setTimeout(() => {
           cancelAnimationFrame(animateId);
