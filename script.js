@@ -68,7 +68,7 @@ function drawLines() {
     raceContext.font = `${isMobile ? "12px Arial" : "14px Arial"}`; // Set the font size and family
     raceContext.fillText(
       i,
-      isMobile ? 5 : 15,
+      isMobile ? 0 : 10,
       raceCanvas.height -
         (playerPosition.bottom - playerPosition.top) -
         i * 14 +
