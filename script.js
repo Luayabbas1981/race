@@ -68,7 +68,6 @@ drawLines();
 
 playerCanvas.width = playArea.offsetWidth;
 playerCanvas.height = playArea.offsetHeight;
-//
 
 // Ball class
 class Ball {
@@ -253,6 +252,7 @@ playArea.addEventListener("pointerup", function () {
       }
     });
     ball.update();
+   
     if (
       Math.abs(ball.velocity.x) < stopThreshold &&
       Math.abs(ball.velocity.y) < stopThreshold
