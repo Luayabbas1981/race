@@ -136,8 +136,8 @@ class Hole {
     this.radius = radius;
     this.color = color;
     this.number = number;
-    this.originalX=x;
-    this.direction=1;
+    this.originalX = x;
+    this.direction = 1;
   }
 
   draw() {
@@ -152,7 +152,6 @@ class Hole {
     playerContext.textBaseline = "middle";
     playerContext.fillText(this.number, this.x, this.y);
   }
-  
 }
 let holeSArray = [];
 function createHoles() {
@@ -257,7 +256,7 @@ playArea.addEventListener("pointerup", function () {
               ? parseInt(hole.number / 2)
               : parseInt(hole.number / 2) + 1;
           player.style = `--steps:${-steps * 15}px`;
-          
+
           info.textContent = steps;
         }, 20);
         setTimeout(() => {
