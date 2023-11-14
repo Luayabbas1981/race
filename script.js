@@ -162,27 +162,27 @@ function createHoles() {
   for (let index = 0; index < 6; index++) {
     if (index === 0) {
       let hole = new Hole(x / 8, isMobile ? 60 : 80, radius, color, 6);
-      holeSArray.push(hole);
+      holesArray.push(hole);
     }
     if (index === 1) {
       let hole = new Hole(x / 2.2, isMobile ? 65 : 85, radius, color, 8);
-      holeSArray.push(hole);
+      holesArray.push(hole);
     }
     if (index === 2) {
       let hole = new Hole(x / 1.3, isMobile ? 50 : 90, radius, color, 7);
-      holeSArray.push(hole);
+      holesArray.push(hole);
     }
     if (index === 3) {
       let hole = new Hole(x / 5, isMobile ? 180 : 220, radius, color, 5);
-      holeSArray.push(hole);
+      holesArray.push(hole);
     }
     if (index === 4) {
       let hole = new Hole(x / 2, isMobile ? 180 : 220, radius, color, 3);
-      holeSArray.push(hole);
+      holesArray.push(hole);
     }
     if (index === 5) {
       let hole = new Hole(x / 1.35, isMobile ? 200 : 240, radius, color, 4);
-      holeSArray.push(hole);
+      holesArray.push(hole);
     }
     /*  if (index === 6) {
       let hole = new Hole(x / 4, 350, radius, color, 1);
@@ -193,7 +193,7 @@ function createHoles() {
       holeSArray.push(hole);
     } */
   }
-  holeSArray.forEach((hole) => hole.draw());
+  holesArray.forEach((hole) => hole.draw());
 }
 createHoles();
 
@@ -243,7 +243,7 @@ playArea.addEventListener("pointerup", function () {
   function animate() {
     animateId = requestAnimationFrame(animate);
     playerContext.clearRect(0, 0, playerCanvas.width, playerCanvas.height);
-    holeSArray.forEach((hole) => {
+    holesArray.forEach((hole) => {
       hole.draw();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
@@ -289,7 +289,7 @@ playArea.addEventListener("pointerup", function () {
 function endRound() {
   setTimeout(() => {
     playerContext.clearRect(0, 0, playerCanvas.width, playerCanvas.height);
-    holeSArray = [];
+    holesArray = [];
     createHoles();
     let endRoundBall = new Ball(
       playerCanvas.width / 2,
