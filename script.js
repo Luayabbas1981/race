@@ -254,7 +254,7 @@ playArea.addEventListener("pointerup", function () {
               ? parseInt(hole.number / 2)
               : parseInt(hole.number / 2) + 1;
           player.style = `--steps:${-steps * 15}px`;
-          console.log(raceCanvas.height - finishLinePosition.bottom);
+          
           info.textContent = steps;
         }, 20);
         setTimeout(() => {
