@@ -245,7 +245,7 @@ playArea.addEventListener("pointerup", function () {
       hole.draw();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
-        hole.color = "#e69900";
+        hole.color = "#208f01";
         motor.play();
         setTimeout(() => {
           cancelAnimationFrame(animateId);
