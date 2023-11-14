@@ -55,7 +55,7 @@ function drawLines() {
     raceContext.lineWidth = 1;
     raceContext.beginPath();
     raceContext.moveTo(
-      isMobile ? 10 : 30,
+      isMobile ? 20 : 35,
       raceCanvas.height - (playerPosition.bottom - playerPosition.top + i * 14)
     );
     raceContext.lineTo(

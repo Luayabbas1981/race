@@ -18,7 +18,7 @@ body {
     color: #607d8b;
 }
 .race {
-    background-color: #dceb52;
+    background-color: #e1ee69;
 }
 .player {
     translate: 0 var(--steps);
