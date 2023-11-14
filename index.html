@@ -17,17 +17,19 @@
       <div class="container h-100">
         <div class="row justify-content-center">
           <div class="race-area col-4 m-0 p-0 d-flex">
-           <div class="info col-5 p-4 text-light fs-5 fw-bold d-flex flex-column justify-content-around align-items-center">
+           <div class="info col-6 p-4 text-light fs-5 fw-bold d-flex flex-column justify-content-around align-items-center">
             <div class="rounds">ROUND <span style="color: #ffd900;"></span></div>
+            <div class="ball-speed">BALL SPEED <span style="color: #ffd900;"></span></div>
             <div class="steps">STEPS <span style="color: #ffd900;" ></span></div>
            </div>
-           <div class="race col-7 bg-info position-relative d-flex justify-content-center">
+           <div class="race col-6 bg-info position-relative d-flex justify-content-center">
+            <canvas id="raceCanvas" class="position-absolute w-100 h-100"></canvas>
             <div class="finish-line"><img src="./images/finish-line.png" alt=""></div>
             <div class="player position-absolute bottom-0"><img src="./images/turtle.png" alt=""></div>
            </div>
           </div>
           <div class="play-area col-6 m-0 p-0">
-            <canvas id="canvas"></canvas>
+            <canvas id="playerCanvas"></canvas>
           </div>
         </div>
       </div>

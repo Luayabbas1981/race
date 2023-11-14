@@ -1,11 +1,14 @@
 const raceArea = document.querySelector(".race-area");
-const finishLine = document.querySelector(".finish-line img")
+const finishLine = document.querySelector(".finish-line img");
 const round = document.querySelector(".rounds span");
 const info = document.querySelector(".steps span");
+const ballSpeedInfo = document.querySelector(".ball-speed span")
 const playArea = document.querySelector(".play-area");
 const player = document.querySelector(".player");
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
+const raceCanvas = document.getElementById("raceCanvas");
+const playerCanvas = document.getElementById("playerCanvas");
+const raceContext = raceCanvas.getContext("2d");
+const playerContext = playerCanvas.getContext("2d");
 let mouseX;
 let mouseY;
 let playerPosition;
@@ -13,16 +16,54 @@ let ballSpeed = 0;
 let rounds = 0;
 let steps = 0;
 let ballSpeedInterval;
-let stepsInterval;
 let angle;
 let animateId;
 
-// Canvas demotions
-const finishLinePosition = finishLine.getBoundingClientRect()
+// raceCanvas
+raceCanvas.width = raceArea.offsetWidth;
+raceCanvas.height = raceArea.offsetHeight;
+const finishLinePosition = finishLine.getBoundingClientRect();
 
-canvas.width = playArea.offsetWidth;
-console.log(canvas.width,playArea.offsetWidth)
-canvas.height = playArea.offsetHeight;
+playerPosition = player.getBoundingClientRect();
+const linesNumber = parseInt(
+  (raceCanvas.height -
+    finishLinePosition.top / 2 -
+    (playerPosition.bottom - playerPosition.top)) /
+    14
+);
+
+function drawLines() {
+  for (let i = 0; i < linesNumber - 1; i++) {
+    raceContext.strokeStyle = "white";
+    raceContext.lineWidth = 1;
+    raceContext.beginPath();
+    raceContext.moveTo(
+      30,
+      raceCanvas.height - (playerPosition.bottom - playerPosition.top + i * 14)
+    );
+    raceContext.lineTo(
+      raceCanvas.width,
+      raceCanvas.height - (playerPosition.bottom - playerPosition.top + i * 14)
+    );
+    raceContext.stroke();
+    raceContext.closePath();
+    raceContext.fillStyle = "black"; // Set the color of the text
+    raceContext.font = "14px Arial"; // Set the font size and family
+    raceContext.fillText(
+      i,
+      15,
+      raceCanvas.height -
+        (playerPosition.bottom - playerPosition.top) -
+        i * 14 +
+        5
+    );
+  }
+}
+drawLines();
+// PlayerCanvas
+
+playerCanvas.width = playArea.offsetWidth;
+playerCanvas.height = playArea.offsetHeight;
 //
 
 // Ball class
@@ -36,21 +77,24 @@ class Ball {
   }
 
   draw() {
-    context.beginPath();
-    context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    context.fillStyle = this.color;
-    context.fill();
+    playerContext.beginPath();
+    playerContext.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    playerContext.fillStyle = this.color;
+    playerContext.fill();
   }
 
   update() {
     this.draw();
-    // Check if the ball reaches the right or left boundary of the canvas
-    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+    // Check if the ball reaches the right or left boundary of the playerCanvas
+    if (this.x + this.radius > playerCanvas.width || this.x - this.radius < 0) {
       this.velocity.x = -this.velocity.x; // Reverse the x-direction
     }
 
-    // Check if the ball reaches the top or bottom boundary of the canvas
-    if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+    // Check if the ball reaches the top or bottom boundary of the playerCanvas
+    if (
+      this.y + this.radius > playerCanvas.height ||
+      this.y - this.radius < 0
+    ) {
       this.velocity.y = -this.velocity.y; // Reverse the y-direction
     }
     const friction = 0.99; // Adjust this value to control the rate of speed reduction
@@ -60,7 +104,12 @@ class Ball {
     this.y = this.y + this.velocity.y;
   }
 }
-let initBall = new Ball(canvas.width / 2, canvas.height - 50, 20, "#ea1c0d");
+let initBall = new Ball(
+  playerCanvas.width / 2,
+  playerCanvas.height - 50,
+  20,
+  "#ea1c0d"
+);
 initBall.draw();
 // Hole class
 class Hole {
@@ -73,21 +122,21 @@ class Hole {
   }
 
   draw() {
-    context.beginPath();
-    context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    context.fillStyle = this.color;
-    context.fill();
+    playerContext.beginPath();
+    playerContext.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    playerContext.fillStyle = this.color;
+    playerContext.fill();
     // Draw the number in the middle
-    context.fillStyle = "#ffffff"; // Set the color for the text
-    context.font = "24px Arial"; // Set the font size and family
-    context.textAlign = "center"; // Center the text horizontally
-    context.textBaseline = "middle"; // Center the text vertically
-    context.fillText(this.number, this.x, this.y);
+    playerContext.fillStyle = "#ffffff"; // Set the color for the text
+    playerContext.font = "24px Arial"; // Set the font size and family
+    playerContext.textAlign = "center"; // Center the text horizontally
+    playerContext.textBaseline = "middle"; // Center the text vertically
+    playerContext.fillText(this.number, this.x, this.y);
   }
 }
 let holeSArray = [];
 function createHoles() {
-  const x = canvas.width;
+  const x = playerCanvas.width;
   const radius = 30;
   const color = "#3196c7";
 
@@ -134,18 +183,37 @@ let ball;
 // Set Speed function
 playArea.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
-  angle = Math.atan2(
-    event.clientY - canvas.height - 50,
-    event.clientX - canvas.width / 2
-  );
+  if (event.clientX < window.innerWidth / 2 + raceArea.offsetWidth) {
+    angle = Math.atan2(
+      event.clientY -
+        playerCanvas.height +
+        100 -
+        (window.innerHeight - raceArea.offsetHeight),
+      event.clientX - playerCanvas.width - raceArea.offsetWidth - 100
+    );
+  } else {
+    angle = Math.atan2(
+      event.clientY -
+        playerCanvas.height +
+        100 -
+        (window.innerHeight - raceArea.offsetHeight),
+      event.clientX - playerCanvas.width - raceArea.offsetWidth
+    );
+  }
+
   ballSpeedInterval = setInterval(() => {
     ballSpeed++;
+    ballSpeedInfo.textContent= ballSpeed
+    if (ballSpeed === 35) {
+      clearInterval(ballSpeedInterval);
+    }
+    console.log(ballSpeed);
   }, 50);
 });
 
 // Animate function
 playArea.addEventListener("pointerup", function () {
-  playerPosition= player.getBoundingClientRect()
+  playerPosition = player.getBoundingClientRect();
   rounds++;
   round.textContent = rounds;
   const stopThreshold = 0.1;
@@ -158,8 +226,8 @@ playArea.addEventListener("pointerup", function () {
 
   // Create the ball object only once
   ball = new Ball(
-    canvas.width / 2,
-    canvas.height - 50,
+    playerCanvas.width / 2,
+    playerCanvas.height - 50,
     20,
     "#ea1c0d",
     velocity
@@ -167,21 +235,27 @@ playArea.addEventListener("pointerup", function () {
 
   function animate() {
     animateId = requestAnimationFrame(animate);
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    playerContext.clearRect(0, 0, playerCanvas.width, playerCanvas.height);
     holeSArray.forEach((hole) => {
       hole.draw();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
-      if (dist - ball.radius - hole.radius < 1) {
+      if (dist - ball.radius - hole.radius < 0.1) {
         hole.color = "green";
 
         setTimeout(() => {
           cancelAnimationFrame(animateId);
-          steps += hole.number / 2;
+          steps +=
+            hole.number % 2 === 0
+              ? parseInt(hole.number / 2)
+              : parseInt(hole.number / 2) + 1;
           player.style = `--steps:${-steps * 15}px`;
           info.textContent = steps;
-          console.log(finishLinePosition.bottom,playerPosition.top)
         }, 20);
         setTimeout(() => {
+          if (playerPosition.top - finishLinePosition.bottom < 50) {
+            console.log("winner");
+          }
+
           endRound();
         }, 200);
       }
@@ -201,12 +275,12 @@ playArea.addEventListener("pointerup", function () {
 
 function endRound() {
   setTimeout(() => {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    playerContext.clearRect(0, 0, playerCanvas.width, playerCanvas.height);
     holeSArray = [];
     createHoles();
     let endRoundBall = new Ball(
-      canvas.width / 2,
-      canvas.height - 50,
+      playerCanvas.width / 2,
+      playerCanvas.height - 50,
       20,
       "#ea1c0d"
     );
