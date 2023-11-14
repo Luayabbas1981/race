@@ -65,7 +65,7 @@ function drawLines() {
     raceContext.stroke();
     raceContext.closePath();
     raceContext.fillStyle = "blue"; // Set the color of the text
-    raceContext.font = `${isMobile ? "12px Arial" : "14px Arial"}`; // Set the font size and family
+    raceContext.font = `${isMobile ? "10px Arial" : "14px Arial"}`; // Set the font size and family
     raceContext.fillText(
       i,
       isMobile ? 0 : 10,
