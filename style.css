@@ -19,7 +19,7 @@ header{
     color: #607d8b;
 }
 .race {
-    background-color: #e1ee69;
+    background-color: #ecf87b;
 }
 .player {
     translate: 0 var(--steps);
