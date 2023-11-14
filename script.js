@@ -136,6 +136,8 @@ class Hole {
     this.radius = radius;
     this.color = color;
     this.number = number;
+    this.originalX=x;
+    this.direction=1;
   }
 
   draw() {
@@ -150,6 +152,7 @@ class Hole {
     playerContext.textBaseline = "middle";
     playerContext.fillText(this.number, this.x, this.y);
   }
+  
 }
 let holeSArray = [];
 function createHoles() {

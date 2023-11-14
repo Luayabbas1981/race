@@ -1,7 +1,7 @@
 body {
     height: 100vh;
     user-select: none;
-    background-color: #f4fcfe;
+    background-color: #e0fced;
     overflow: hidden;
 }
 header{
@@ -17,6 +17,9 @@ header{
 .info {
     background-color: #3f52c0;
     color: #537180;
+}
+.info > div{
+    width: 20%;
 }
 .race {
     background-color: #f0f7b5;
@@ -41,6 +44,9 @@ header{
 @media (max-width: 767px) {
     * {
         font-size: 10px;
+    }
+    body{
+        background-color: #eee;
     }
     img {
         width: 50px;
