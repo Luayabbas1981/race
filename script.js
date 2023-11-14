@@ -108,7 +108,7 @@ let initBall = new Ball(
   playerCanvas.width / 2,
   playerCanvas.height - 50,
   20,
-  "#ea1c0d"
+  "#0014c3"
 );
 initBall.draw();
 // Hole class
@@ -216,6 +216,7 @@ playArea.addEventListener("pointerup", function () {
   playerPosition = player.getBoundingClientRect();
   rounds++;
   round.textContent = rounds;
+  ballSpeedInfo.textContent="0"
   const stopThreshold = 0.1;
   const velocity = {
     x: Math.cos(angle) * ballSpeed,
@@ -229,7 +230,7 @@ playArea.addEventListener("pointerup", function () {
     playerCanvas.width / 2,
     playerCanvas.height - 50,
     20,
-    "#ea1c0d",
+    "#0014c3",
     velocity
   );
 
@@ -282,7 +283,7 @@ function endRound() {
       playerCanvas.width / 2,
       playerCanvas.height - 50,
       20,
-      "#ea1c0d"
+      "#0014c3"
     );
     endRoundBall.draw();
   }, 700);
