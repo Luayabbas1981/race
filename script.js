@@ -1,14 +1,18 @@
+// Game elements
 const raceArea = document.querySelector(".race-area");
 const finishLine = document.querySelector(".finish-line img");
 const round = document.querySelector(".rounds span");
 const info = document.querySelector(".steps span");
-const ballSpeedInfo = document.querySelector(".ball-speed span")
+const ballSpeedInfo = document.querySelector(".ball-speed span");
 const playArea = document.querySelector(".play-area");
 const player = document.querySelector(".player");
 const raceCanvas = document.getElementById("raceCanvas");
 const playerCanvas = document.getElementById("playerCanvas");
 const raceContext = raceCanvas.getContext("2d");
 const playerContext = playerCanvas.getContext("2d");
+// Game sound elements
+const motor = document.querySelector(".motor");
+// Game values
 let mouseX;
 let mouseY;
 let playerPosition;
@@ -127,10 +131,10 @@ class Hole {
     playerContext.fillStyle = this.color;
     playerContext.fill();
     // Draw the number in the middle
-    playerContext.fillStyle = "#ffffff"; // Set the color for the text
-    playerContext.font = "24px Arial"; // Set the font size and family
-    playerContext.textAlign = "center"; // Center the text horizontally
-    playerContext.textBaseline = "middle"; // Center the text vertically
+    playerContext.fillStyle = "#ffffff";
+    playerContext.font = "24px Arial";
+    playerContext.textAlign = "center";
+    playerContext.textBaseline = "middle";
     playerContext.fillText(this.number, this.x, this.y);
   }
 }
@@ -138,7 +142,7 @@ let holeSArray = [];
 function createHoles() {
   const x = playerCanvas.width;
   const radius = 30;
-  const color = "#a43f04";
+  const color = "#04a4a1";
 
   for (let index = 0; index < 8; index++) {
     if (index === 0) {
@@ -203,7 +207,7 @@ playArea.addEventListener("pointerdown", function (event) {
 
   ballSpeedInterval = setInterval(() => {
     ballSpeed++;
-    ballSpeedInfo.textContent= ballSpeed
+    ballSpeedInfo.textContent = ballSpeed;
     if (ballSpeed === 35) {
       clearInterval(ballSpeedInterval);
     }
@@ -216,7 +220,7 @@ playArea.addEventListener("pointerup", function () {
   playerPosition = player.getBoundingClientRect();
   rounds++;
   round.textContent = rounds;
-  ballSpeedInfo.textContent="0"
+  ballSpeedInfo.textContent = "0";
   const stopThreshold = 0.1;
   const velocity = {
     x: Math.cos(angle) * ballSpeed,
@@ -241,8 +245,8 @@ playArea.addEventListener("pointerup", function () {
       hole.draw();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
-        hole.color = "green";
-
+        hole.color = "#c32a00";
+        motor.play();
         setTimeout(() => {
           cancelAnimationFrame(animateId);
           steps +=
