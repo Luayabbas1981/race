@@ -264,8 +264,11 @@ playArea.addEventListener("pointerup", function () {
             player.style = `--steps:${-(
               raceCanvas.height - finishLinePosition.top
             )}px`;
-            modals.classList.remove("d-none");
-            modals.children[0].children[1].textContent = `${rounds} Rounds`;
+            setTimeout(() => {
+              modals.classList.remove("d-none");
+              modals.children[0].children[1].textContent = `${rounds} Rounds`;
+            }, 1500);
+           
           }
 
           endRound();
