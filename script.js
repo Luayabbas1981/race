@@ -210,7 +210,7 @@ playArea.addEventListener("pointerdown", function (event) {
   ballSpeedInterval = setInterval(() => {
     ballSpeed++;
     ballSpeedInfo.textContent = ballSpeed;
-    if (ballSpeed === 35) {
+    if (ballSpeed === 30) {
       clearInterval(ballSpeedInterval);
     }
   }, 50);
