@@ -200,13 +200,12 @@ createHoles();
 let ball;
 
 // Set Speed function
-playerCanvas.addEventListener("pointerdown", function (event) {
-  ballSpeed = 0;
+function clickHandler(event){
+  ballSpeed=0
   angle = Math.atan2(
     event.clientY - (initBall.y + playerCanvas.getBoundingClientRect().top),
     event.clientX - (initBall.x + playerCanvas.getBoundingClientRect().left)
   );
-
   ballSpeedInterval = setInterval(() => {
     ballSpeed++;
     ballSpeedInfo.textContent = ballSpeed;
@@ -214,10 +213,12 @@ playerCanvas.addEventListener("pointerdown", function (event) {
       clearInterval(ballSpeedInterval);
     }
   }, 50);
-});
+}
+playerCanvas.addEventListener("pointerdown",clickHandler)
 
 // Animate function
 playerCanvas.addEventListener("pointerup", function () {
+ 
   clearInterval(ballSpeedInterval);
   playerPosition = player.getBoundingClientRect();
   rounds++;
