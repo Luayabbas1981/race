@@ -140,10 +140,10 @@ class Hole {
     this.radius = radius;
     this.color = color;
     this.number = number;
-    this.originalX = x + 20;
+    this.originalX = x + 15;
     this.speed = Number((Math.random() - 0.2).toFixed(1));
-    this.firstRandomDirection = randomNumber(20, 50);
-    this.secondRandomDirection = randomNumber(10, 40);
+    this.firstRandomDirection =isMobile?randomNumber(20,25): randomNumber(20, 50);
+    this.secondRandomDirection =isMobile?randomNumber(5,15): randomNumber(10, 40);
   }
 
   draw() {

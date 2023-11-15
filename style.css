@@ -49,4 +49,7 @@ body {
     img {
         width: 50px;
     }
+    .player{
+        right: 0;
+    }
 }
