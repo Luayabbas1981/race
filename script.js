@@ -200,8 +200,8 @@ createHoles();
 let ball;
 
 // Set Speed function
-function clickHandler(event){
-  ballSpeed=0
+function clickHandler(event) {
+  ballSpeed = 0;
   angle = Math.atan2(
     event.clientY - (initBall.y + playerCanvas.getBoundingClientRect().top),
     event.clientX - (initBall.x + playerCanvas.getBoundingClientRect().left)
@@ -213,12 +213,13 @@ function clickHandler(event){
       clearInterval(ballSpeedInterval);
     }
   }, 50);
+  playerCanvas.addEventListener("pointerup", clickDone, { once: true });
 }
-playerCanvas.addEventListener("pointerdown",clickHandler)
+playerCanvas.addEventListener("pointerdown", clickHandler, { once: true });
 
 // Animate function
-playerCanvas.addEventListener("pointerup", function () {
- 
+function clickDone() {
+  playerCanvas.removeEventListener("pointerdown", clickHandler);
   clearInterval(ballSpeedInterval);
   playerPosition = player.getBoundingClientRect();
   rounds++;
@@ -269,7 +270,6 @@ playerCanvas.addEventListener("pointerup", function () {
               modals.classList.remove("d-none");
               modals.children[0].children[1].textContent = `${rounds} Rounds`;
             }, 1500);
-           
           }
 
           endRound();
@@ -288,7 +288,7 @@ playerCanvas.addEventListener("pointerup", function () {
   }
 
   animate();
-});
+}
 
 function endRound() {
   setTimeout(() => {
@@ -302,6 +302,7 @@ function endRound() {
       "#de0341"
     );
     endRoundBall.draw();
+    playerCanvas.addEventListener("pointerdown", clickHandler, { once: true });
   }, 700);
 }
 
