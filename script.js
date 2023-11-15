@@ -136,10 +136,16 @@ class Hole {
     this.color = color;
     this.number = number;
     this.originalX = x + 20;
-    this.direction = 1;
+    this.direction = 0.4;
   }
 
   draw() {
+    playerContext.clearRect(
+      this.x - this.radius - 1,
+      this.y - this.radius - 1,
+      (this.radius + 2) * 2,
+      (this.radius + 2) * 2
+    );
     playerContext.beginPath();
     playerContext.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     playerContext.fillStyle = this.color;
@@ -161,6 +167,7 @@ class Hole {
   }
 }
 let holesArray = [];
+let holeAnimateId;
 function createHoles() {
   const x = playerCanvas.width;
   const radius = isMobile ? 17 : 28;
@@ -200,7 +207,11 @@ function createHoles() {
       holeSArray.push(hole);
     } */
   }
-  holesArray.forEach((hole) => hole.update());
+  function holeAnimate() {
+    holeAnimateId = requestAnimationFrame(holeAnimate);
+    holesArray.forEach((hole) => hole.update());
+  }
+  holeAnimate();
 }
 createHoles();
 
@@ -256,6 +267,7 @@ function clickUp() {
       hole.update();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
+        cancelAnimationFrame(holeAnimateId);
         hole.color = "#208f01";
         motor.play();
         setTimeout(() => {
@@ -298,6 +310,7 @@ function clickUp() {
 }
 
 function endRound() {
+  cancelAnimationFrame(holeAnimateId);
   setTimeout(() => {
     playerContext.clearRect(0, 0, playerCanvas.width, playerCanvas.height);
     holesArray = [];
