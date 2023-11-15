@@ -128,6 +128,11 @@ let initBall = new Ball(
 initBall.draw();
 
 // Hole class
+function randomNumber(min, max) {
+  const num = Math.floor(Math.random() * (max - min + 1) + min);
+  return num;
+}
+console.log((Math.random() + 0.1).toFixed(1));
 class Hole {
   constructor(x, y, radius, color, number) {
     this.x = x;
@@ -136,7 +141,9 @@ class Hole {
     this.color = color;
     this.number = number;
     this.originalX = x + 20;
-    this.direction = 0.4;
+    this.speed = Number((Math.random() - 0.2).toFixed(1));
+    this.firstRandomDirection = randomNumber(20, 50);
+    this.secondRandomDirection = randomNumber(10, 40);
   }
 
   draw() {
@@ -159,11 +166,15 @@ class Hole {
   }
   update() {
     this.draw();
-    if (this.x <= this.originalX - 30 || this.x >= this.originalX + 10) {
-      this.direction = -this.direction;
+
+    if (
+      this.x <= this.originalX - this.firstRandomDirection ||
+      this.x >= this.originalX + this.secondRandomDirection
+    ) {
+      this.speed = -this.speed;
     }
 
-    this.x += this.direction;
+    this.x += this.speed;
   }
 }
 let holesArray = [];
@@ -212,6 +223,9 @@ function createHoles() {
     holesArray.forEach((hole) => hole.update());
   }
   holeAnimate();
+  holesArray.forEach((item) => {
+    console.log(item.number, item.speed);
+  });
 }
 createHoles();
 
