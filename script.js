@@ -136,7 +136,7 @@ class Hole {
     this.radius = radius;
     this.color = color;
     this.number = number;
-    this.originalX = x;
+    this.originalX = x + 50;
     this.direction = 1;
   }
 
@@ -151,6 +151,14 @@ class Hole {
     playerContext.textAlign = "center";
     playerContext.textBaseline = "middle";
     playerContext.fillText(this.number, this.x, this.y);
+  }
+  update() {
+    this.draw();
+    if (this.x <= this.originalX - 60 || this.x >= this.originalX + 30) {
+      this.direction = -this.direction;
+    }
+
+    this.x += this.direction;
   }
 }
 let holesArray = [];
@@ -193,7 +201,7 @@ function createHoles() {
       holeSArray.push(hole);
     } */
   }
-  holesArray.forEach((hole) => hole.draw());
+  holesArray.forEach((hole) => hole.update());
 }
 createHoles();
 
@@ -246,7 +254,7 @@ function clickUp() {
     animateId = requestAnimationFrame(animate);
     playerContext.clearRect(0, 0, playerCanvas.width, playerCanvas.height);
     holesArray.forEach((hole) => {
-      hole.draw();
+      hole.update();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
         hole.color = "#208f01";
