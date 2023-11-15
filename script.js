@@ -34,7 +34,6 @@ let steps = 0;
 let ballSpeedInterval;
 let angle;
 let animateId;
-let isGameStated = false;
 
 // raceCanvas
 raceCanvas.width = raceArea.offsetWidth;
@@ -136,7 +135,7 @@ class Hole {
     this.radius = radius;
     this.color = color;
     this.number = number;
-    this.originalX = x + 50;
+    this.originalX = x + 20;
     this.direction = 1;
   }
 
@@ -154,7 +153,7 @@ class Hole {
   }
   update() {
     this.draw();
-    if (this.x <= this.originalX - 60 || this.x >= this.originalX + 30) {
+    if (this.x <= this.originalX - 30 || this.x >= this.originalX + 10) {
       this.direction = -this.direction;
     }
 
