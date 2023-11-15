@@ -200,7 +200,7 @@ createHoles();
 let ball;
 
 // Set Speed function
-playArea.addEventListener("pointerdown", function (event) {
+playerCanvas.addEventListener("pointerdown", function (event) {
   ballSpeed = 0;
   angle = Math.atan2(
     event.clientY - (initBall.y + playerCanvas.getBoundingClientRect().top),
@@ -217,7 +217,7 @@ playArea.addEventListener("pointerdown", function (event) {
 });
 
 // Animate function
-playArea.addEventListener("pointerup", function () {
+playerCanvas.addEventListener("pointerup", function () {
   clearInterval(ballSpeedInterval);
   playerPosition = player.getBoundingClientRect();
   rounds++;
