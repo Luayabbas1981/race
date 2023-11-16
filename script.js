@@ -138,7 +138,7 @@ class InitBall extends Ball {
 let initBall = new InitBall(
   playerCanvas.width / 2,
   playerCanvas.height - 30,
-  isMobile ? 10 : 18,
+  isMobile ? 18: 16,
   "#de0341"
 );
 initBall.draw();
@@ -316,7 +316,7 @@ function clickUp() {
   ball = new Ball(
     ballPosition,
     playerCanvas.height - 30,
-    isMobile ? 10 : 18,
+    isMobile ? 18: 16,
     "#de0341",
     velocity
   );
@@ -383,7 +383,7 @@ function endRound() {
     let endRoundBall = new Ball(
       playerCanvas.width / 2,
       playerCanvas.height - 30,
-      isMobile ? 10 : 18,
+      isMobile ? 18: 16,
       "#de0341"
     );
     endRoundBall.draw();
