@@ -160,7 +160,7 @@ class Hole {
     this.speed = Number((Math.random() - 0.2).toFixed(1));
     this.firstRandomDirection = isMobile
       ? randomNumber(10, 15)
-      : randomNumber(20, 40);
+      : randomNumber(15, 25);
     this.secondRandomDirection = isMobile
       ? randomNumber(5, 20)
       : randomNumber(10, 50);
@@ -328,8 +328,8 @@ function clickUp() {
       hole.update();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
-        initBall.x = playerCanvas.width / 2;
         cancelAnimationFrame(holeAnimateId);
+        initBall.x = playerCanvas.width / 2;
         hole.color = "#208f01";
         motor.play();
         setTimeout(() => {
