@@ -1,10 +1,16 @@
+@font-face {
+    font-family: "ninja-turtles-regular", sans-serif;
+    src: url(./font/Turtles.otf);
+}
 body {
     height: 100vh;
     user-select: none;
-    background-color: #e0fced;
+    background-color: #e9fbf2;
     overflow: hidden;
 }
-
+* {
+    font-family: "ninja-turtles-regular", sans-serif;
+}
 .main {
     height: 85vh;
 }
@@ -49,7 +55,7 @@ body {
     img {
         width: 50px;
     }
-    .player{
+    .player {
         right: 0;
     }
 }
