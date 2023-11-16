@@ -100,19 +100,19 @@ class Ball {
 
   update() {
     this.draw();
-    // Check if the ball reaches the right or left boundary of the playerCanvas
+    
     if (this.x + this.radius > playerCanvas.width || this.x - this.radius < 0) {
-      this.velocity.x = -this.velocity.x; // Reverse the x-direction
+      this.velocity.x = -this.velocity.x; 
     }
 
-    // Check if the ball reaches the top or bottom boundary of the playerCanvas
+    
     if (
       this.y + this.radius > playerCanvas.height ||
       this.y - this.radius < 0
     ) {
-      this.velocity.y = -this.velocity.y; // Reverse the y-direction
+      this.velocity.y = -this.velocity.y; 
     }
-    const friction = 0.99; // Adjust this value to control the rate of speed reduction
+    const friction = 0.99; 
     this.velocity.x *= friction;
     this.velocity.y *= friction;
     this.x = this.x + this.velocity.x;
@@ -213,14 +213,7 @@ function createHoles() {
       let hole = new Hole(x / 1.35, isMobile ? 200 : 240, radius, color, 4);
       holesArray.push(hole);
     }
-    /*  if (index === 6) {
-      let hole = new Hole(x / 4, 350, radius, color, 1);
-      holeSArray.push(hole);
-    }
-    if (index === 7) {
-      let hole = new Hole(x / 1.4, 350, radius, color, 2);
-      holeSArray.push(hole);
-    } */
+  
   }
   function holeAnimate() {
     holeAnimateId = requestAnimationFrame(holeAnimate);
