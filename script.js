@@ -142,8 +142,12 @@ class Hole {
     this.number = number;
     this.originalX = x + 15;
     this.speed = Number((Math.random() - 0.2).toFixed(1));
-    this.firstRandomDirection =isMobile?randomNumber(20,25): randomNumber(20, 50);
-    this.secondRandomDirection =isMobile?randomNumber(5,15): randomNumber(10, 40);
+    this.firstRandomDirection = isMobile
+      ? randomNumber(20, 25)
+      : randomNumber(20, 50);
+    this.secondRandomDirection = isMobile
+      ? randomNumber(5, 15)
+      : randomNumber(10, 40);
   }
 
   draw() {
@@ -300,6 +304,7 @@ function clickUp() {
               raceCanvas.height - finishLinePosition.top
             )}px`;
             setTimeout(() => {
+              cancelAnimationFrame(holeAnimateId);
               modals.classList.remove("d-none");
               modals.children[0].children[1].textContent = `${rounds} Rounds`;
             }, 1500);
