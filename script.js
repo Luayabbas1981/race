@@ -183,34 +183,35 @@ class Hole {
 }
 let holesArray = [];
 let holeAnimateId;
+let numbersArray=[1,2,3,4,5,6]
 function createHoles() {
   const x = playerCanvas.width;
   const radius = isMobile ? 17 : 28;
   const color = "#057ac3";
-
+  numbersArray.sort(()=> Math.random() - 0.5)
   for (let index = 0; index < 6; index++) {
     if (index === 0) {
-      let hole = new Hole(x / 8, isMobile ? 60 : 80, radius, color, 6);
+      let hole = new Hole(x / 8, isMobile ? 60 : 80, radius, color, numbersArray[0]);
       holesArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole(x / 2.2, isMobile ? 65 : 85, radius, color, 8);
+      let hole = new Hole(x / 2.2, isMobile ? 65 : 85, radius, color,numbersArray[1]);
       holesArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole(x / 1.3, isMobile ? 50 : 90, radius, color, 7);
+      let hole = new Hole(x / 1.3, isMobile ? 50 : 90, radius, color, numbersArray[2]);
       holesArray.push(hole);
     }
     if (index === 3) {
-      let hole = new Hole(x / 5, isMobile ? 180 : 220, radius, color, 5);
+      let hole = new Hole(x / 5, isMobile ? 180 : 220, radius, color, numbersArray[3]);
       holesArray.push(hole);
     }
     if (index === 4) {
-      let hole = new Hole(x / 2, isMobile ? 180 : 220, radius, color, 3);
+      let hole = new Hole(x / 2, isMobile ? 180 : 220, radius, color, numbersArray[4]);
       holesArray.push(hole);
     }
     if (index === 5) {
-      let hole = new Hole(x / 1.35, isMobile ? 200 : 240, radius, color, 4);
+      let hole = new Hole(x / 1.35, isMobile ? 200 : 240, radius, color, numbersArray[5]);
       holesArray.push(hole);
     }
   

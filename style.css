@@ -26,7 +26,7 @@ h4 img{
     color: #71a239;
 }
 .info > div > div {
-    width: 29%;
+    width: 33%;
 }
 .race {
     background-color: #f0f7b5;
@@ -58,10 +58,12 @@ h4 img{
     h4 img{
         width: 25px;
     }
+    
     img {
         width: 50px;
     }
     .player {
         right: 0;
     }
+
 }
