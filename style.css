@@ -11,6 +11,9 @@ body {
     letter-spacing: 2.5px;
 }
 
+h4 img{
+    width: 40px;
+}
 .main {
     height: 85vh;
 }
@@ -19,8 +22,8 @@ body {
 }
 
 .info {
-    background-color: #3f52c0;
-    color: #537180;
+    background-color: #bee590;
+    color: #71a239;
 }
 .info > div > div {
     width: 29%;
@@ -51,6 +54,9 @@ body {
     }
     body {
         background-color: #fff;
+    }
+    h4 img{
+        width: 25px;
     }
     img {
         width: 50px;
