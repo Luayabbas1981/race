@@ -291,9 +291,9 @@ function clickUp() {
         setTimeout(() => {
           cancelAnimationFrame(animateId);
           steps +=
-            hole.number % 2 === 0
+            hole.number  / 2/* % 2 === 0
               ? parseInt(hole.number / 2)
-              : parseInt(hole.number / 2) + 1;
+              : parseInt(hole.number / 2) + 1; */
           player.style = `--steps:${-steps * 15}px`;
 
           info.textContent = steps;
