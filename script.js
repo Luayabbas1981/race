@@ -143,8 +143,8 @@ class Hole {
     this.originalX = x ;
     this.speed = Number((Math.random() - 0.2).toFixed(1));
     this.firstRandomDirection = isMobile
-      ? randomNumber(20, 25)
-      : randomNumber(20, 50);
+      ? randomNumber(10, 15)
+      : randomNumber(20, 40);
     this.secondRandomDirection = isMobile
       ? randomNumber(5, 20)
       : randomNumber(10, 50);
