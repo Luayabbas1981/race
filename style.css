@@ -1,16 +1,16 @@
 @font-face {
-    font-family: "ninja-turtles-regular", sans-serif;
-    src: url(./font/Turtles.otf);
+    font-family: "ninja";
+    src: url("./font/Turtles.otf") format("opentype");
 }
 body {
     height: 100vh;
     user-select: none;
     background-color: #e9fbf2;
     overflow: hidden;
+    font-family: "ninja";
+    letter-spacing: 2.5px;
 }
-* {
-    font-family: "ninja-turtles-regular", sans-serif;
-}
+
 .main {
     height: 85vh;
 }
