@@ -7,10 +7,12 @@ body {
     user-select: none;
     background-color: #e9fbf2;
     overflow: hidden;
-    letter-spacing: 2.5px;
 }
 header {
     font-family: "ninja";
+}
+h4 {
+    letter-spacing: 2.5px;
 }
 h4 img {
     width: 40px;
@@ -23,11 +25,12 @@ h4 img {
 }
 
 .info {
+    letter-spacing: 0.5px;
     background-color: #bee590;
     color: #5b852a;
 }
 .info > div > div {
-    width: 33%;
+    width: 31%;
 }
 .race {
     background-color: #f0f7b5;
@@ -66,5 +69,4 @@ h4 img {
     .player {
         right: 0;
     }
-   
 }
