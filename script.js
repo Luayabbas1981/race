@@ -157,10 +157,10 @@ class Hole {
     this.color = color;
     this.number = number;
     this.originalX = x;
-    this.speed = Number((Math.random() - 0.2).toFixed(1));
+    this.speed =isMobile?Number((Math.random() - 0.5).toFixed(1)): Number((Math.random() - 0.1).toFixed(1));
     this.firstRandomDirection = isMobile
       ? randomNumber(10, 15)
-      : randomNumber(15, 25);
+      : randomNumber(20, 40);
     this.secondRandomDirection = isMobile
       ? randomNumber(5, 20)
       : randomNumber(10, 50);
