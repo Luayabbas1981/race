@@ -17,7 +17,7 @@ motor.volume = 0.1;
 // Game controls
 const restart = document.querySelector("button");
 const leftArrow = document.querySelector(".left-arrow");
-const RightArrow = document.querySelector(".right-arrow");
+const rightArrow = document.querySelector(".right-arrow");
 const isMobile =
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
@@ -28,7 +28,6 @@ let mouseX;
 let mouseY;
 let playerPosition;
 let ballSpeed = 0;
-let ballPosition;
 let rounds = 0;
 let steps = 0;
 let ballSpeedInterval;
@@ -80,7 +79,7 @@ drawLines();
 
 playerCanvas.width = playArea.offsetWidth;
 playerCanvas.height = playArea.offsetHeight;
-
+let ballPosition = playerCanvas.width / 2;
 // Ball class
 class Ball {
   constructor(x, y, radius, color, velocity) {
@@ -100,27 +99,44 @@ class Ball {
 
   update() {
     this.draw();
-    
+
     if (this.x + this.radius > playerCanvas.width || this.x - this.radius < 0) {
-      this.velocity.x = -this.velocity.x; 
+      this.velocity.x = -this.velocity.x;
     }
 
-    
     if (
       this.y + this.radius > playerCanvas.height ||
       this.y - this.radius < 0
     ) {
-      this.velocity.y = -this.velocity.y; 
+      this.velocity.y = -this.velocity.y;
     }
-    const friction = 0.99; 
+    const friction = 0.99;
     this.velocity.x *= friction;
     this.velocity.y *= friction;
     this.x = this.x + this.velocity.x;
     this.y = this.y + this.velocity.y;
   }
 }
-let initBall = new Ball(
-  ballPosition ? ballPosition : playerCanvas.width / 2,
+
+class InitBall extends Ball {
+  constructor(x, y, radius, color) {
+    super(x, y, radius, color);
+  }
+  draw() {
+    playerContext.clearRect(
+      this.x - this.radius - 1,
+      this.y - this.radius - 1,
+      (this.radius + 2) * 2,
+      (this.radius + 2) * 2
+    );
+    playerContext.beginPath();
+    playerContext.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    playerContext.fillStyle = this.color;
+    playerContext.fill();
+  }
+}
+let initBall = new InitBall(
+  playerCanvas.width / 2,
   playerCanvas.height - 30,
   isMobile ? 10 : 18,
   "#de0341"
@@ -132,7 +148,7 @@ function randomNumber(min, max) {
   const num = Math.floor(Math.random() * (max - min + 1) + min);
   return num;
 }
-console.log((Math.random() + 0.1).toFixed(1));
+
 class Hole {
   constructor(x, y, radius, color, number) {
     this.x = x;
@@ -140,7 +156,7 @@ class Hole {
     this.radius = radius;
     this.color = color;
     this.number = number;
-    this.originalX = x ;
+    this.originalX = x;
     this.speed = Number((Math.random() - 0.2).toFixed(1));
     this.firstRandomDirection = isMobile
       ? randomNumber(10, 15)
@@ -183,47 +199,80 @@ class Hole {
 }
 let holesArray = [];
 let holeAnimateId;
-let numbersArray=[1,2,3,4,5,6]
+let numbersArray = [1, 2, 3, 4, 5, 6];
 function createHoles() {
   const x = playerCanvas.width;
   const radius = isMobile ? 17 : 28;
   const color = "#057ac3";
-  numbersArray.sort(()=> Math.random() - 0.5)
+  numbersArray.sort(() => Math.random() - 0.5);
   for (let index = 0; index < 6; index++) {
     if (index === 0) {
-      let hole = new Hole(x / 8, isMobile ? 60 : 80, radius, color, numbersArray[0]);
+      let hole = new Hole(
+        x / 8,
+        isMobile ? 60 : 80,
+        radius,
+        color,
+        numbersArray[0]
+      );
       holesArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole(x / 2.2, isMobile ? 65 : 85, radius, color,numbersArray[1]);
+      let hole = new Hole(
+        x / 2.2,
+        isMobile ? 65 : 85,
+        radius,
+        color,
+        numbersArray[1]
+      );
       holesArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole(x / 1.3, isMobile ? 50 : 90, radius, color, numbersArray[2]);
+      let hole = new Hole(
+        x / 1.3,
+        isMobile ? 50 : 90,
+        radius,
+        color,
+        numbersArray[2]
+      );
       holesArray.push(hole);
     }
     if (index === 3) {
-      let hole = new Hole(x / 5, isMobile ? 180 : 220, radius, color, numbersArray[3]);
+      let hole = new Hole(
+        x / 5,
+        isMobile ? 180 : 220,
+        radius,
+        color,
+        numbersArray[3]
+      );
       holesArray.push(hole);
     }
     if (index === 4) {
-      let hole = new Hole(x / 2, isMobile ? 180 : 220, radius, color, numbersArray[4]);
+      let hole = new Hole(
+        x / 2,
+        isMobile ? 180 : 220,
+        radius,
+        color,
+        numbersArray[4]
+      );
       holesArray.push(hole);
     }
     if (index === 5) {
-      let hole = new Hole(x / 1.35, isMobile ? 200 : 240, radius, color, numbersArray[5]);
+      let hole = new Hole(
+        x / 1.35,
+        isMobile ? 200 : 240,
+        radius,
+        color,
+        numbersArray[5]
+      );
       holesArray.push(hole);
     }
-  
   }
   function holeAnimate() {
     holeAnimateId = requestAnimationFrame(holeAnimate);
     holesArray.forEach((hole) => hole.update());
   }
   holeAnimate();
-  holesArray.forEach((item) => {
-    console.log(item.number, item.speed);
-  });
+  holesArray.forEach((item) => {});
 }
 createHoles();
 
@@ -265,7 +314,7 @@ function clickUp() {
 
   // Create the ball object only once
   ball = new Ball(
-    playerCanvas.width / 2,
+    ballPosition,
     playerCanvas.height - 30,
     isMobile ? 10 : 18,
     "#de0341",
@@ -279,13 +328,13 @@ function clickUp() {
       hole.update();
       const dist = Math.hypot(ball.x - hole.x, ball.y - hole.y);
       if (dist - ball.radius - hole.radius < 0.1) {
+        initBall.x = playerCanvas.width / 2;
         cancelAnimationFrame(holeAnimateId);
         hole.color = "#208f01";
         motor.play();
         setTimeout(() => {
           cancelAnimationFrame(animateId);
-          steps +=
-            hole.number  / 2/* % 2 === 0
+          steps += hole.number / 2; /* % 2 === 0
               ? parseInt(hole.number / 2)
               : parseInt(hole.number / 2) + 1; */
           player.style = `--steps:${-steps * 15}px`;
@@ -301,6 +350,8 @@ function clickUp() {
               cancelAnimationFrame(holeAnimateId);
               modals.classList.remove("d-none");
               modals.children[0].children[1].textContent = `${rounds} Rounds`;
+              rightArrow.addEventListener("pointerdown", rightArrowDown);
+              leftArrow.addEventListener("pointerdown", leftArrowDown);
             }, 1500);
           }
 
@@ -328,6 +379,7 @@ function endRound() {
     playerContext.clearRect(0, 0, playerCanvas.width, playerCanvas.height);
     holesArray = [];
     createHoles();
+
     let endRoundBall = new Ball(
       playerCanvas.width / 2,
       playerCanvas.height - 30,
@@ -336,9 +388,51 @@ function endRound() {
     );
     endRoundBall.draw();
     playerCanvas.addEventListener("pointerdown", clickDown, { once: true });
+    rightArrow.addEventListener("pointerdown", rightArrowDown);
+    leftArrow.addEventListener("pointerdown", leftArrowDown);
   }, 700);
 }
 
 restart.onclick = () => {
   location.reload();
 };
+// Arrows function
+let responsiveDistance = isMobile ? 60 : 100;
+// Right arrow
+let rightArrowInterval;
+function rightArrowDown() {
+  rightArrowInterval = setInterval(() => {
+    if (initBall.x < playerCanvas.width - responsiveDistance) {
+      initBall.x += 1;
+      initBall.draw();
+      ballPosition += 1;
+    } else {
+      rightArrowUp();
+    }
+  }, 20);
+}
+rightArrow.addEventListener("pointerdown", rightArrowDown);
+rightArrow.addEventListener("pointerup", rightArrowUp);
+function rightArrowUp() {
+  clearInterval(rightArrowInterval);
+  rightArrow.removeEventListener("pointerdown", rightArrowDown);
+}
+// Left arrow
+let leftArrowInterval;
+function leftArrowDown() {
+  leftArrowInterval = setInterval(() => {
+    if (initBall.x > responsiveDistance) {
+      initBall.x -= 1;
+      initBall.draw();
+      ballPosition -= 1;
+    } else {
+      leftArrowUp();
+    }
+  }, 20);
+}
+leftArrow.addEventListener("pointerdown", leftArrowDown);
+leftArrow.addEventListener("pointerup", leftArrowUp);
+function leftArrowUp() {
+  clearInterval(leftArrowInterval);
+  leftArrow.removeEventListener("pointerdown", leftArrowDown);
+}
