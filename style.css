@@ -7,11 +7,12 @@ body {
     user-select: none;
     background-color: #e9fbf2;
     overflow: hidden;
-    font-family: "ninja";
     letter-spacing: 2.5px;
 }
-
-h4 img{
+header {
+    font-family: "ninja";
+}
+h4 img {
     width: 40px;
 }
 .main {
@@ -23,7 +24,7 @@ h4 img{
 
 .info {
     background-color: #bee590;
-    color: #71a239;
+    color: #5b852a;
 }
 .info > div > div {
     width: 33%;
@@ -55,15 +56,14 @@ h4 img{
     body {
         background-color: #fff;
     }
-    h4 img{
+    h4 img {
         width: 25px;
     }
-    
+
     img {
         width: 50px;
     }
     .player {
         right: 0;
     }
-
 }
