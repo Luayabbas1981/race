@@ -317,6 +317,7 @@ function clickUp() {
         hole.color = "#208f01";
         motor.play();
         setTimeout(() => {
+          ballPosition = playerCanvas.width / 2;
           cancelAnimationFrame(animateId);
           steps += hole.number / 2; /* % 2 === 0
               ? parseInt(hole.number / 2)
