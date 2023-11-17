@@ -51,6 +51,7 @@ h4 img {
 .left-arrow,
 .right-arrow {
     cursor: pointer;
+    width: 70px;
 }
 .modals{
     font-family: "ninja";
@@ -81,4 +82,8 @@ h4 img {
     .player {
         right: 0;
     }
+    .left-arrow,
+.right-arrow {
+    width: 40px;
+}
 }

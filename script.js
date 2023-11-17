@@ -135,9 +135,10 @@ class InitBall extends Ball {
     playerContext.fill();
   }
 }
+
 let initBall = new InitBall(
   ballPosition,
-  playerCanvas.height - 30,
+  isMobile?playerCanvas.height - 20:playerCanvas.height - 30,
   isMobile ? 8 : 16,
   "#de0341"
 );
@@ -299,7 +300,7 @@ function clickUp() {
   // Create the ball object only once
   ball = new Ball(
     ballPosition,
-    playerCanvas.height - 30,
+    isMobile?playerCanvas.height - 20:playerCanvas.height - 30,
     isMobile ? 8 : 16,
     "#de0341",
     velocity
@@ -367,7 +368,7 @@ function endRound() {
 
     let endRoundBall = new InitBall(
       playerCanvas.width / 2,
-      playerCanvas.height - 30,
+      isMobile?playerCanvas.height - 20:playerCanvas.height - 30,
       isMobile ? 8 : 16,
       "#de0341"
     );
