@@ -52,8 +52,17 @@ h4 img {
 .right-arrow {
     cursor: pointer;
 }
+.modals{
+    font-family: "ninja";
+}
 .modals > div {
-    box-shadow: inset 0px 0px 11px 4px #a3a2a2;
+    background-color: #d5f8ac;
+    color: #3e6313;
+    border-radius: 1rem;
+    box-shadow: inset 0px 0px 11px 4px #79aa42;
+}
+.modals button{
+    color: #406714;
 }
 @media (max-width: 767px) {
     * {
@@ -72,5 +81,4 @@ h4 img {
     .player {
         right: 0;
     }
-    
 }
