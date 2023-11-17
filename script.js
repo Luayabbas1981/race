@@ -199,7 +199,7 @@ class Hole {
 }
 let holesArray = [];
 let holeAnimateId;
-let numbersArray = [1, 2, 3, 4, 5, 6];
+let numbersArray = [1, 2, 3];
 function createHoles() {
   const x = playerCanvas.width;
   const radius = isMobile ? 17 : 28;
@@ -212,7 +212,7 @@ function createHoles() {
         isMobile ? 60 : 80,
         radius,
         color,
-        numbersArray[0]
+        6
       );
       holesArray.push(hole);
     }
@@ -222,7 +222,7 @@ function createHoles() {
         isMobile ? 65 : 85,
         radius,
         color,
-        numbersArray[1]
+        8
       );
       holesArray.push(hole);
     }
@@ -232,7 +232,7 @@ function createHoles() {
         isMobile ? 50 : 90,
         radius,
         color,
-        numbersArray[2]
+        7
       );
       holesArray.push(hole);
     }
@@ -242,7 +242,7 @@ function createHoles() {
         isMobile ? 180 : 220,
         radius,
         color,
-        numbersArray[3]
+        numbersArray[0]
       );
       holesArray.push(hole);
     }
@@ -252,7 +252,7 @@ function createHoles() {
         isMobile ? 180 : 220,
         radius,
         color,
-        numbersArray[4]
+        numbersArray[1]
       );
       holesArray.push(hole);
     }
@@ -262,7 +262,7 @@ function createHoles() {
         isMobile ? 200 : 240,
         radius,
         color,
-        numbersArray[5]
+        numbersArray[2]
       );
       holesArray.push(hole);
     }
