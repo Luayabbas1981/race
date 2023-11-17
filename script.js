@@ -138,7 +138,7 @@ class InitBall extends Ball {
 let initBall = new InitBall(
   playerCanvas.width / 2,
   playerCanvas.height - 30,
-  isMobile ? 8: 16,
+  isMobile ? 8 : 16,
   "#de0341"
 );
 initBall.draw();
@@ -157,7 +157,9 @@ class Hole {
     this.color = color;
     this.number = number;
     this.originalX = x;
-    this.speed =isMobile?Number((Math.random() - 0.5).toFixed(1)): Number((Math.random() - 0.1).toFixed(1));
+    this.speed = isMobile
+      ? Number((Math.random() - 0.5).toFixed(1))
+      : Number((Math.random() - 0.1).toFixed(1));
     this.firstRandomDirection = isMobile
       ? randomNumber(10, 15)
       : randomNumber(20, 40);
@@ -207,33 +209,15 @@ function createHoles() {
   numbersArray.sort(() => Math.random() - 0.5);
   for (let index = 0; index < 6; index++) {
     if (index === 0) {
-      let hole = new Hole(
-        x / 8,
-        isMobile ? 60 : 80,
-        radius,
-        color,
-        6
-      );
+      let hole = new Hole(x / 8, isMobile ? 60 : 80, radius, color, 6);
       holesArray.push(hole);
     }
     if (index === 1) {
-      let hole = new Hole(
-        x / 2.2,
-        isMobile ? 65 : 85,
-        radius,
-        color,
-        8
-      );
+      let hole = new Hole(x / 2.2, isMobile ? 65 : 85, radius, color, 8);
       holesArray.push(hole);
     }
     if (index === 2) {
-      let hole = new Hole(
-        x / 1.3,
-        isMobile ? 50 : 90,
-        radius,
-        color,
-        7
-      );
+      let hole = new Hole(x / 1.3, isMobile ? 50 : 90, radius, color, 7);
       holesArray.push(hole);
     }
     if (index === 3) {
@@ -316,7 +300,7 @@ function clickUp() {
   ball = new Ball(
     ballPosition,
     playerCanvas.height - 30,
-    isMobile ? 8: 16,
+    isMobile ? 8 : 16,
     "#de0341",
     velocity
   );
@@ -383,7 +367,7 @@ function endRound() {
     let endRoundBall = new Ball(
       playerCanvas.width / 2,
       playerCanvas.height - 30,
-      isMobile ? 8: 16,
+      isMobile ? 8 : 16,
       "#de0341"
     );
     endRoundBall.draw();
