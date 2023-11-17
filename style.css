@@ -7,7 +7,7 @@ body {
     user-select: none;
     background-color: #e9fbf2;
     overflow: hidden;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 header {
     font-family: "ninja";
@@ -52,8 +52,8 @@ h4 img {
 .right-arrow {
     cursor: pointer;
 }
-.modals > div{
-     box-shadow: inset 0px 0px 11px 4px #a3a2a2;
+.modals > div {
+    box-shadow: inset 0px 0px 11px 4px #a3a2a2;
 }
 @media (max-width: 767px) {
     * {
