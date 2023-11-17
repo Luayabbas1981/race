@@ -56,13 +56,13 @@ h4 img {
     font-family: "ninja";
 }
 .modals > div {
-    background-color: #d5f8ac;
-    color: #3e6313;
+    background-color: #ecfadb;
+    color: #2a4609;
     border-radius: 1rem;
-    box-shadow: inset 0px 0px 11px 4px #79aa42;
+    box-shadow: inset 0px 0px 11px 4px #d1fba2;
 }
 .modals button{
-    color: #406714;
+    color: #33550c;
 }
 @media (max-width: 767px) {
     * {

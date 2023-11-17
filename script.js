@@ -136,7 +136,7 @@ class InitBall extends Ball {
   }
 }
 let initBall = new InitBall(
-  playerCanvas.width / 2,
+  ballPosition,
   playerCanvas.height - 30,
   isMobile ? 8 : 16,
   "#de0341"
@@ -364,7 +364,7 @@ function endRound() {
     holesArray = [];
     createHoles();
 
-    let endRoundBall = new Ball(
+    let endRoundBall = new InitBall(
       playerCanvas.width / 2,
       playerCanvas.height - 30,
       isMobile ? 8 : 16,
@@ -385,6 +385,7 @@ let responsiveDistance = isMobile ? 60 : 100;
 // Right arrow
 let rightArrowInterval;
 function rightArrowDown() {
+  initBall.x= ballPosition
   rightArrowInterval = setInterval(() => {
     if (initBall.x < playerCanvas.width - responsiveDistance) {
       initBall.x += 1;
@@ -404,6 +405,7 @@ function rightArrowUp() {
 // Left arrow
 let leftArrowInterval;
 function leftArrowDown() {
+  initBall.x= ballPosition
   leftArrowInterval = setInterval(() => {
     if (initBall.x > responsiveDistance) {
       initBall.x -= 1;
